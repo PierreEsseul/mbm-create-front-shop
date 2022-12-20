@@ -1,10 +1,13 @@
 import React from 'react';
-
-import './App.css';
+import ArticleForm from './components/NewArticle/ArticleForm';
 
 function App() {
-  return;
-}
+  return (
+    <div>
+      <ArticleForm />
+    </div>
+  );
+};
 
 export default App;
   
