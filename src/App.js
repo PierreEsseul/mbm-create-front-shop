@@ -1,10 +1,10 @@
 import React from 'react';
-import ArticleForm from './components/NewArticle/ArticleForm';
+import BoutiqueFormSteps from './components/NewBoutique/BoutiqueFormSteps';
 
 function App() {
   return (
     <div>
-      <ArticleForm />
+      <BoutiqueFormSteps />
     </div>
   );
 };

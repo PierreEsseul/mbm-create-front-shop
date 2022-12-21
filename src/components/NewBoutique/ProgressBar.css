@@ -1,0 +1,18 @@
+.progress-bar {
+    margin-top: 2rem;
+    background-color: #ddd;
+    height: 20px;
+    width: 80%;
+    margin-left: 1.2rem;
+}
+
+.progress-bar-fill {
+    background-color: #07875d;
+    height: 100%;
+}
+
+.progress-bar-label {
+    color: black;
+    font-size: 15px;
+    margin-left: 10%;
+}

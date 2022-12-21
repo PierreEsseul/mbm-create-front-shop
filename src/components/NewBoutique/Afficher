@@ -1,0 +1,53 @@
+import React, { useState } from 'react';
+
+function FormSteps() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const formSteps = [
+    <Step1 />,
+    <Step2 />,
+    <Step3 />,
+  ];
+
+  function goToNextStep() {
+    setCurrentStep(currentStep + 1);
+  }
+
+  return (
+    <form>
+      {formSteps[currentStep]}
+    </form>
+  );
+}
+
+function Step1() {
+  return (
+    <>
+      <label>Step 1</label>
+      <input type="text" />
+      <button onClick={goToNextStep}>Next</button>
+    </>
+  );
+}
+
+function Step2() {
+  return (
+    <>
+      <label>Step 2</label>
+      <input type="text" />
+      <button onClick={goToNextStep}>Next</button>
+    </>
+  );
+}
+
+function Step3() {
+  return (
+    <>
+      <label>Step 3</label>
+      <input type="text" />
+      <button>Submit</button>
+    </>
+  );
+}
+
+
+
