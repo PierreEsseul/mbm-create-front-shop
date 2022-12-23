@@ -78,18 +78,20 @@ const BoutiqueFormSteps = (props) => {
             mail: enteredMail,
             shopName: enteredShopName,
             articleName: enteredArticleName,
+            description: enteredDescription,
+            image: enteredImage,
+            amount: enteredAmount,
+            recover: checkRecovers,
+            payment: checkPayments,
         }
 
-        props.onSaveBoutiqueData(boutiqueData);
+        console.log(boutiqueData);
 
-        setEnteredMail('');
-        setEnteredShopName('');
+        
         setEnteredArticleName('');
         setEnteredDescription('');
         setEnteredImage('');
-        setEnteredAmount('');
-        setCheckRecovers('');
-        setCheckPayments('');              
+        setEnteredAmount('');              
     };
 
     function goToPreviousStep() {
@@ -101,50 +103,51 @@ const BoutiqueFormSteps = (props) => {
     }
     const formSteps = [
         <Step1 
-            onValue={enteredMail}    
-            onChange={mailChangeHandler} 
-            onNext={goToNextStep} />,
+            onValue={enteredMail}
+            onChange={mailChangeHandler} />,
         <Step2 
             onValue={enteredShopName}
-            onChange={shopNameChangeHandler}
-            onNext={goToNextStep} 
-            onPrevious={goToPreviousStep} />,
+            onChange={shopNameChangeHandler} />,
         <Step3 
             onValueArticle={enteredArticleName}
             onChangeArticle={articleNameChangeHandler}
             onValueDescription={enteredDescription}
             onChangeDescription={descriptionChangeHandler}
             onValuePhoto={enteredImage}
-            onChangePhoto={descriptionChangeHandler}
+            onChangePhoto={fileChangeHandler}
             onValuePrice={enteredAmount}
-            onChangePrice={amountChangeHandler}
-            onNext={goToNextStep} 
-            onPrevious={goToPreviousStep} />,
+            onChangePrice={amountChangeHandler} />,
         <Step4 
             onValueDelivery={'delivery'}
             onCheckedDelivery={checkRecovers.includes('delivery')}
             onChangeDelivery={recoverChangeHandler}
             onValuePickup={'pickup'}
             onCheckedPickup={checkRecovers.includes('pickup')}
-            onChangePickup={recoverChangeHandler}
-            onNext={goToNextStep}
-            onPrevious={goToPreviousStep} />,
+            onChangePickup={recoverChangeHandler} />,
         <Step5 
             onValueCard={'card'}
             onCheckedCard={checkPayments.includes('card')}
             onChangeCard={paymentChangeHandler}
             onValueCash={'cash'}
             onCheckedCash={checkPayments.includes('cash')}
-            onChangeCash={paymentChangeHandler}
-            onNext={goToNextStep}
-            onPrevious={goToPreviousStep} />,
+            onChangeCash={paymentChangeHandler} />,
         <ConfirmStep />,
     ];
 
     return (
+        <div className='new-boutique__controls'>
             <form onSubmit={submitHandler}>
-                    {formSteps[currentStep]}
+                {formSteps[currentStep]}
+                <div className='new-boutique__actions'>
+                    {currentStep > 0 && currentStep < 5 &&(
+                        <button onClick={goToPreviousStep}>Précédent</button>
+                    )}
+                    {currentStep !== 5 && (
+                        <button type='submit' onClick={goToNextStep}>Suivant</button>
+                    )}
+                </div>
             </form>
+        </div>
       );
 };
 

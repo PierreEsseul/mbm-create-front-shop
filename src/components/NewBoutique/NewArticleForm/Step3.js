@@ -12,7 +12,7 @@ const Step3 = (props) => {
         props.onAddArticle(articleData);
     };
 
-    const startEnableHandler = () => {
+    const startEnableHandler = (props) => {
         setIsEnable(true);
     };
 
@@ -56,15 +56,13 @@ const Step3 = (props) => {
                     value={props.onValuePrice} 
                     onChange={props.onChangePrice}/>
             </div>
-            <div className='new-boutique__actions'>
-                <button onClick={props.onPrevious}>Précédent</button>    
+            <div className='new-boutique__actions'>    
                 {!isEnable && (
                     <button type="submit" onClick={startEnableHandler}>Enregistrer</button>
                 )}
                 {isEnable && (
                 <>
                     <button type='button' onClick={saveArticleDataHandler}>Ajouter article</button>
-                    <button type='button' onClick={props.onNext}>Suivant</button>
                 </>
                 )}
             </div>

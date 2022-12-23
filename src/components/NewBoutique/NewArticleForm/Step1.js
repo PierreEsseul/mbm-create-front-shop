@@ -1,17 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import ProgressBar from '../ProgressBar';
 
 import './Steps.css';
 
 const Step1 = (props) => {
-    // const [enteredMail, setEnteredMail] = useState('');
-
-    // const mailChangeHandler = (event) => {
-    //     setEnteredMail(event.target.value);
-    //     console.log(event.target.value);
-    // };
-
     return (
         <div className='new-boutique__controls'>
             <ProgressBar step={1}/>
@@ -24,9 +17,6 @@ const Step1 = (props) => {
                     value={props.onValue}
                     onChange={props.onChange} 
                     autoFocus/>
-            </div>
-            <div className='new-boutique__actions'>
-                <button type='button' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );

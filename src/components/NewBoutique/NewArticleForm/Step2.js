@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step2 = (props) => {
@@ -16,11 +16,6 @@ const Step2 = (props) => {
                     value={props.onValue}
                     onChange={props.onChange}
                     autoFocus />
-            </div>
-
-            <div className='new-boutique__actions'>
-                <button type='button' onClick={props.onPrevious}>Précédent</button>    
-                <button type='submit' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );

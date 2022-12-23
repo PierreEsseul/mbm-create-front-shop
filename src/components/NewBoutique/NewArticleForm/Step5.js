@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step5 = (props) => {
@@ -23,10 +23,6 @@ const Step5 = (props) => {
                     checked={props.onCheckedCash}
                     onChange={props.onChangeCash} />
                 Espèce</label>
-            </div>
-            <div className='new-boutique__actions'>
-                <button type='button' onClick={props.onPrevious}>Précédent</button>    
-                <button type='button' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );

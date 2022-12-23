@@ -1,10 +1,9 @@
 .progress-bar {
-    background-color: red;
     margin-top: 2rem;
     background-color: #ddd;
     height: 20px;
-    width: 80%;
-    margin-left: 1.2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .progress-bar-fill {
