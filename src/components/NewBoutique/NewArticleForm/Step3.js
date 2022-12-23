@@ -2,31 +2,6 @@ import React, {useState} from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step3 = (props) => {
-    const [enteredArticleName, setEnteredArticleName] = useState('');
-    const [enteredDescription, setEnteredDescription] = useState('');
-    const [enteredImage, setEnteredImage] = useState(null);
-    const [enteredAmount, setEnteredAmount] = useState('');
-
-    const articleNameChangeHandler = (event) => {
-        setEnteredArticleName(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const descriptionChangeHandler = (event) => {
-        setEnteredDescription(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const fileChangeHandler = (event) => {
-        setEnteredImage(event.target.files[0]);
-        console.log(event.target.files[0]);
-    }    
-    
-    const amountChangeHandler = (event) => {
-        setEnteredAmount(event.target.value);
-        console.log(event.target.value);
-    };
-
     const [isEnable, setIsEnable] = useState(false);
 
     const saveArticleDataHandler = (enteredArticleData) => {
@@ -35,10 +10,9 @@ const Step3 = (props) => {
             id: Math.floor((Math.random()*10).toString()),
         };
         props.onAddArticle(articleData);
-        setIsEnable(false);
     };
 
-    const startEditingHandler = () => {
+    const startEnableHandler = () => {
         setIsEnable(true);
     };
 
@@ -49,14 +23,18 @@ const Step3 = (props) => {
                 <label>Nom de l'article :</label>
                 <input 
                     type="text" 
-                    value={enteredArticleName}
-                    onChange={articleNameChangeHandler} />
+                    name="articleName" 
+                    id="articleName"
+                    value={props.onValueArticle}
+                    onChange={props.onChangeArticle} 
+                    autoFocus/>
             </div>
             <div className='new-boutique__control'>
                 <textarea cols="40" rows="5"
+                    id="description"
                     placeholder='Ajouter une description...'
-                    value={enteredDescription}
-                    onChange={descriptionChangeHandler}
+                    value={props.onValueDescription}
+                    onChange={props.onChangeDescription}
                 ></textarea>
             </div>
             <div className='new-boutique__control'>
@@ -65,25 +43,28 @@ const Step3 = (props) => {
                     id="photo" 
                     name="photo" 
                     accept="image/*" 
-                    onChange={fileChangeHandler} />
-                {enteredImage && <p>{enteredImage.name}</p>}
+                    onChange={props.onChangePhoto} />
+                {props.onnValuePhoto && <p>{props.onnValuePhoto.name}</p>}
             </div>
             <div className='new-boutique__control'>
                 <label>Prix de l'article :</label>
-                <input type="number" 
+                <input type="number"
+                    id="price"
+                    name="price"
                     min="0.01" 
                     step="0.01"  
-                    value={enteredAmount} 
-                    onChange={amountChangeHandler}/>
+                    value={props.onValuePrice} 
+                    onChange={props.onChangePrice}/>
             </div>
             <div className='new-boutique__actions'>
+                <button onClick={props.onPrevious}>Précédent</button>    
                 {!isEnable && (
-                    <button type={startEditingHandler}>Enregistrer article</button>
+                    <button type="submit" onClick={startEnableHandler}>Enregistrer</button>
                 )}
                 {isEnable && (
                 <>
-                    <button type={saveArticleDataHandler}>Ajouter article</button>
-                    <button onClick={props.onNext}>Etape suivante</button>
+                    <button type='button' onClick={saveArticleDataHandler}>Ajouter article</button>
+                    <button type='button' onClick={props.onNext}>Suivant</button>
                 </>
                 )}
             </div>

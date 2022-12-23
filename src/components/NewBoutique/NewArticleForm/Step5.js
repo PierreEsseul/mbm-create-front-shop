@@ -2,19 +2,6 @@ import React, {useState} from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step5 = (props) => {
-    const [checkPayments, setCheckPayments] = useState('');
-
-    const paymentChangeHandler = (event) => {
-        const payment = event.target.value;
-        if (event.target.checked) {
-            setCheckPayments([...checkPayments, payment]);
-            console.log([...checkPayments, payment]);
-        } else {
-            setCheckPayments(checkPayments.filter((f) => f !== payment));
-            console.log(checkPayments.filter((f) => f !== payment));
-        }
-    };
-
     return (
         <div className='new-boutique__controls'>
             <ProgressBar step={5}/>
@@ -24,21 +11,22 @@ const Step5 = (props) => {
                 <input 
                     type="checkbox" 
                     id='card'
-                    value='card'
-                    checked={checkPayments.includes('card')}
-                    onChange={paymentChangeHandler} />
+                    value={props.onValueCard}
+                    checked={props.onCheckedCard}
+                    onChange={props.onChangeCard} />
                 Carte bancaire</label>
                 <label>
                 <input 
                     type="checkbox" 
                     id='cash'
                     value='cash'
-                    checked={checkPayments.includes('cash')}
-                    onChange={paymentChangeHandler} />
+                    checked={props.onCheckedCash}
+                    onChange={props.onChangeCash} />
                 Espèce</label>
             </div>
             <div className='new-boutique__actions'>
-                <button type='submit'>Enregistrer ma liste d'article(s)</button>
+                <button type='button' onClick={props.onPrevious}>Précédent</button>    
+                <button type='button' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );

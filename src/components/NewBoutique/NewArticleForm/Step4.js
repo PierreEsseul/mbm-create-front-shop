@@ -2,18 +2,6 @@ import React, {useState} from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step4 = (props) => {
-    const [checkRecovers, setCheckRecovers] = useState('');
-
-    const recoverChangeHandler = (event) => {
-        const recover = event.target.value;
-        if (event.target.checked) {
-            setCheckRecovers([...checkRecovers, recover]);
-            console.log([...checkRecovers, recover]);
-        } else {
-            setCheckRecovers(checkRecovers.filter((f) => f !== recover));
-            console.log(checkRecovers.filter((f) => f !== recover));            
-        }
-    };
 
     return (
         <div className='new-boutique__controls'>
@@ -24,21 +12,22 @@ const Step4 = (props) => {
                 <input 
                     type="checkbox" 
                     id='delivery'
-                    value='delivery'
-                    checked={checkRecovers.includes('delivery')}
-                    onChange={recoverChangeHandler} />
+                    value={props.onValueDelivery}
+                    checked={props.onCheckedDelivery}
+                    onChange={props.onChangeDelivery} />
                 Livraison</label>
                 <label>
                 <input 
                     type="checkbox" 
                     id='pickup'
-                    value='pickup'
-                    checked={checkRecovers.includes('pickup')}
-                    onChange={recoverChangeHandler} />
+                    value={props.onValuePickup}
+                    checked={props.onCheckedPickup}
+                    onChange={props.onChangePickup} />
                 A retirer en boutique</label>
             </div>
             <div className='new-boutique__actions'>
-                <button onClick={props.onNext}>Etape suivante</button>
+                <button type='button' onClick={props.onPrevious}>Précédent</button>    
+                <button type='button' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );

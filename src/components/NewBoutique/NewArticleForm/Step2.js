@@ -2,12 +2,7 @@ import React, {useState} from 'react';
 import ProgressBar from '../ProgressBar';
 
 const Step2 = (props) => {
-    const [enteredShopName, setEnteredShopName] = useState('');
-
-    const shopNameChangeHandler = (event) => {
-        setEnteredShopName(event.target.value);
-        console.log(event.target.value);
-    };
+    
 
     return (
         <div className='new-boutique__controls'> 
@@ -15,13 +10,17 @@ const Step2 = (props) => {
             <div className='new-boutique__control'>
                 <label>Comment s'appelle votre boutique ?</label>
                 <input 
+                    name="shopName"
+                    id="shopName"
                     type="text" 
-                    value={enteredShopName}
-                    onChange={shopNameChangeHandler} />
+                    value={props.onValue}
+                    onChange={props.onChange}
+                    autoFocus />
             </div>
 
             <div className='new-boutique__actions'>
-                <button onClick={props.onNext}>Etape suivante</button>
+                <button type='button' onClick={props.onPrevious}>Précédent</button>    
+                <button type='submit' onClick={props.onNext}>Suivant</button>
             </div>
         </div>
     );
