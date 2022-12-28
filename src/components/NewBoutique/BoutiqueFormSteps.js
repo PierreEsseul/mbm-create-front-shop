@@ -7,6 +7,9 @@ import Step3 from './NewArticleForm/Step3';
 import Step4 from './NewArticleForm/Step4';
 import Step5 from './NewArticleForm/Step5';
 import ConfirmStep from './NewArticleForm/ConfirmStep';
+import { Popup } from '../Popup/Popup';
+
+import './BoutiqueFormSteps.css'
 
 const BoutiqueFormSteps = (props) => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -18,6 +21,8 @@ const BoutiqueFormSteps = (props) => {
     const [enteredAmount, setEnteredAmount] = useState('');
     const [checkRecovers, setCheckRecovers] = useState('');
     const [checkPayments, setCheckPayments] = useState('');
+
+    const [open, setOpen] = useState(false);
 
     const mailChangeHandler = (event) => {
         setEnteredMail(event.target.value);
@@ -71,6 +76,16 @@ const BoutiqueFormSteps = (props) => {
         }
     };
 
+    const saveArticleDataHandler = (enteredArticleData) => {
+        const articleData = {
+            ...enteredArticleData,
+            id: Math.floor((Math.random()*10).toString()),
+        };
+        props.onAddArticle(articleData);
+
+        console.log(articleData);
+    };
+
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -101,6 +116,7 @@ const BoutiqueFormSteps = (props) => {
     function goToNextStep() {
         setCurrentStep(currentStep + 1);
     }
+
     const formSteps = [
         <Step1 
             onValue={enteredMail}
@@ -139,14 +155,25 @@ const BoutiqueFormSteps = (props) => {
             <form onSubmit={submitHandler}>
                 {formSteps[currentStep]}
                 <div className='new-boutique__actions'>
-                    {currentStep > 0 && currentStep < 5 &&(
-                        <button onClick={goToPreviousStep}>Précédent</button>
-                    )}
+                    {currentStep === 2 && (
+                        <button type="submit" onClick={saveArticleDataHandler} onClick={() => setOpen(true)}>Ajouter un autre article</button>
+                    )} 
+                    {open ? <Popup text="L'article est bien enregistré, vous pouvez ajouter un nouvel article ou
+                    cliquer sur le bouton Suivant" closePopup={() => setOpen(false)}/> : null}
                     {currentStep !== 5 && (
                         <button type='submit' onClick={goToNextStep}>Suivant</button>
                     )}
                 </div>
+
+                {currentStep > 0 && currentStep < 5 && (
+                <div className='new-boutique__arrows'>
+                    <button type='button' onClick={goToPreviousStep}><img src="/img/arrowUp.png" alt="bouton pour revenir sur la page précédente" /></button>
+                    <button type='button' onClick={goToNextStep}><img src="/img/arrowDown.png" alt="bouton pour passer à la page suivante" /></button>
+                </div>
+            )}
             </form>
+           
+            
         </div>
       );
 };

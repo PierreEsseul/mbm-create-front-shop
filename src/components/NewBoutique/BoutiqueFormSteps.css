@@ -1,0 +1,23 @@
+form {
+ margin-top: 10px;
+}
+
+.new-boutique__arrows {
+    width: auto;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.new-boutique__arrows button {
+    border-radius: 50%;
+    display: flex;
+    width: 8%;
+    height: 24px;
+    margin-top: 0.6rem;
+}
+
+.new-boutique__arrows img {
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -3px
+}

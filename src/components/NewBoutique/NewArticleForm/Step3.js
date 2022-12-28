@@ -1,24 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
+
 import ProgressBar from '../ProgressBar';
 
+
 const Step3 = (props) => {
-    const [isEnable, setIsEnable] = useState(false);
-
-    const saveArticleDataHandler = (enteredArticleData) => {
-        const articleData = {
-            ...enteredArticleData,
-            id: Math.floor((Math.random()*10).toString()),
-        };
-        props.onAddArticle(articleData);
-    };
-
-    const startEnableHandler = (props) => {
-        setIsEnable(true);
-    };
-
     return (
         <div className='new-boutique__controls'>
-            <ProgressBar step={3}/>
+            <ProgressBar step={3} />
+            <h2>Enregistrement de vos articles</h2>
             <div className='new-boutique__control'>
                 <label>Nom de l'article :</label>
                 <input 
@@ -27,12 +16,12 @@ const Step3 = (props) => {
                     id="articleName"
                     value={props.onValueArticle}
                     onChange={props.onChangeArticle} 
-                    autoFocus/>
+                    autoFocus />
             </div>
             <div className='new-boutique__control'>
                 <textarea cols="40" rows="5"
                     id="description"
-                    placeholder='Ajouter une description...'
+                    placeholder='Ajouter votre description...'
                     value={props.onValueDescription}
                     onChange={props.onChangeDescription}
                 ></textarea>
@@ -54,17 +43,7 @@ const Step3 = (props) => {
                     min="0.01" 
                     step="0.01"  
                     value={props.onValuePrice} 
-                    onChange={props.onChangePrice}/>
-            </div>
-            <div className='new-boutique__actions'>    
-                {!isEnable && (
-                    <button type="submit" onClick={startEnableHandler}>Enregistrer</button>
-                )}
-                {isEnable && (
-                <>
-                    <button type='button' onClick={saveArticleDataHandler}>Ajouter article</button>
-                </>
-                )}
+                    onChange={props.onChangePrice} />
             </div>
         </div>
     );

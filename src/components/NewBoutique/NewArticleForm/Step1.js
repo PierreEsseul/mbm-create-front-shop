@@ -15,8 +15,9 @@ const Step1 = (props) => {
                     name="email"
                     type="email" 
                     value={props.onValue}
-                    onChange={props.onChange} 
-                    autoFocus/>
+                    onChange={props.onChange}
+                    placeholder="votre@mail.fr" 
+                    autoFocus />
             </div>
         </div>
     );

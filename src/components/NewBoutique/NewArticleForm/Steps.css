@@ -1,5 +1,5 @@
 .new-boutique__controls {
-    height: 500px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
@@ -16,9 +16,7 @@
 .new-boutique__control input, textarea {
     font: inherit;
     padding: 0.3rem;
-    border: none;
-    border-radius: 6px;
-    border-bottom: 1px solid black;
+    border-radius: 20px;
     background-color: white;
     width: 18rem;
     max-width: 100%;
@@ -40,23 +38,15 @@
     flex-direction: column;
 }
 
-.redirection{
-    width: 40%;
-}
-
 button, .redirection{
-    width: 30%;
+    width: auto;
+    padding: 5px 8px 5px 8px;
     text-align: center;
-    text-decoration: none;
-    background-color: #07875d;
+    background-color: #ffbf23;
     border: none;
     border-radius: 12px;
     box-shadow: 4px 4px 5px gray;
-    color: white;
-}
-
-.redirection{
-    width: 40%;
+    color: black;
 }
 
 #photo{
@@ -68,7 +58,7 @@ button, .redirection{
     color: #07875d;
 }
 
-.vendeurMail{
+.sellerMail{
     color: rgb(246, 188, 55);
     text-decoration: underline;
     font-style: italic;
@@ -78,6 +68,11 @@ button, .redirection{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
 }

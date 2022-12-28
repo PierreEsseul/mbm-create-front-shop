@@ -14,13 +14,13 @@ const ConfirmStep = (props) => {
             <div className='new-boutique__control'>
                 <p className='new-boutique__confirm'>Votre boutique est prête ;)</p>
 
-                <p className='new-boutique__confirm'>On vient de vous envoyer un mail à : 
-                    <span className='vendeurMail'>utilsateurAMettre@dynamique.com</span>.<br/>
+                <p className='new-boutique__confirm'>On vient de vous envoyer un mail à<br />
+                    <span className='sellerMail'>utilsateurAMettre@dynamique.com</span><br/>
                     On vous explique comment ça fonctionne !</p>
             </div>
 
             <div className='new-boutique__actions'>
-                <a className='redirection' href="#" title="Retour sur la page d'accueil">Retour à l'accueil</a>
+                <a className='redirection' href="#" title="Voir ma boutique">Voir ma boutique</a>
             </div>
         </div>
     )
