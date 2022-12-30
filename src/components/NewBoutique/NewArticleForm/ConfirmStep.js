@@ -15,7 +15,7 @@ const ConfirmStep = (props) => {
                 <p className='new-boutique__confirm'>Votre boutique est prête ;)</p>
 
                 <p className='new-boutique__confirm'>On vient de vous envoyer un mail à<br />
-                    <span className='sellerMail'>utilsateurAMettre@dynamique.com</span><br/>
+                    <span className='sellerMail'>{props.onUserMail}</span><br/>
                     On vous explique comment ça fonctionne !</p>
             </div>
 

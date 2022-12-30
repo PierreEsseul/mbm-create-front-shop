@@ -27,42 +27,34 @@ const BoutiqueFormSteps = (props) => {
 
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
-        console.log(event.target.value);
     };
 
     const shopNameChangeHandler = (event) => {
         setEnteredShopName(event.target.value);
-        console.log(event.target.value);
     };
 
     const articleNameChangeHandler = (event) => {
         setEnteredArticleName(event.target.value);
-        console.log(event.target.value);
     };
 
     const descriptionChangeHandler = (event) => {
         setEnteredDescription(event.target.value);
-        console.log(event.target.value);
     };
 
     const fileChangeHandler = (event) => {
         setEnteredImage(event.target.files[0]);
-        console.log(event.target.files[0]);
     }    
     
     const amountChangeHandler = (event) => {
         setEnteredAmount(event.target.value);
-        console.log(event.target.value);
     };
 
     const recoverChangeHandler = (event) => {
         const recover = event.target.value;
         if (event.target.checked) {
             setCheckRecovers([...checkRecovers, recover]);
-            console.log([...checkRecovers, recover]);
         } else {
-            setCheckRecovers(checkRecovers.filter((f) => f !== recover));
-            console.log(checkRecovers.filter((f) => f !== recover));            
+            setCheckRecovers(checkRecovers.filter((f) => f !== recover));           
         }
     };
 
@@ -70,10 +62,8 @@ const BoutiqueFormSteps = (props) => {
         const payment = event.target.value;
         if (event.target.checked) {
             setCheckPayments([...checkPayments, payment]);
-            console.log([...checkPayments, payment]);
         } else {
             setCheckPayments(checkPayments.filter((f) => f !== payment));
-            console.log(checkPayments.filter((f) => f !== payment));
         }
     };
 
@@ -107,7 +97,8 @@ const BoutiqueFormSteps = (props) => {
             onValueCash={'cash'}
             onCheckedCash={checkPayments.includes('cash')}
             onChangeCash={paymentChangeHandler} />,
-        <ConfirmStep />,
+        <ConfirmStep
+            onUserMail={enteredMail} />,
     ];
 
     const saveArticleDataHandler = (enteredArticleData) => {
@@ -118,6 +109,11 @@ const BoutiqueFormSteps = (props) => {
         props.onAddArticle(articleData);
 
         console.log(articleData);
+
+        setEnteredArticleName('');
+        setEnteredDescription('');
+        setEnteredImage('');
+        setEnteredAmount('');
     };
 
     const submitHandler = (event) => {
@@ -134,13 +130,7 @@ const BoutiqueFormSteps = (props) => {
             payment: checkPayments,
         }
 
-        console.log(boutiqueData);
-
-        
-        setEnteredArticleName('');
-        setEnteredDescription('');
-        setEnteredImage('');
-        setEnteredAmount('');              
+        console.log(boutiqueData);              
     };
 
     function goToPreviousStep() {
