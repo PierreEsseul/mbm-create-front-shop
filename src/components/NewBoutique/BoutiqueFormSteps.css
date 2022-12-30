@@ -1,23 +1,22 @@
 form {
- margin-top: 10px;
+    width: auto;
+    margin-top: 15px;
 }
 
 .new-boutique__arrows {
     width: auto;
     height: auto;
-    margin-top: 1rem;
-}
-
-.new-boutique__arrows button {
-    border-radius: 50%;
-    display: flex;
-    width: 8%;
-    height: 24px;
     margin-top: 0.6rem;
 }
 
-.new-boutique__arrows img {
-    position: absolute;
-    margin-left: -22px;
-    margin-top: -3px
+.new-boutique__arrows button {
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+}
+
+.new-boutique__errorMessage {
+    color: rgb(231, 78, 56);
+    text-align: center;
+    margin-bottom: 0.6rem;
 }

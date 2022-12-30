@@ -1,5 +1,5 @@
 .new-boutique__controls {
-    height: 505px;
+    height: 500px;
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
@@ -17,10 +17,16 @@
     font: inherit;
     padding: 0.3rem;
     border-radius: 20px;
+    border: 2px solid gray;
     background-color: white;
     width: 18rem;
     max-width: 100%;
     margin-left: 10px;    
+}
+
+input:focus, textarea:focus {
+    outline: 1px solid #ffbf23;
+    border: 1px solid #ffbf23;
 }
 
 .new-boutique__actions {
@@ -45,7 +51,6 @@ button, .redirection{
     background-color: #ffbf23;
     border: none;
     border-radius: 12px;
-    box-shadow: 4px 4px 5px gray;
     color: black;
 }
 
@@ -59,7 +64,7 @@ button, .redirection{
 }
 
 .sellerMail{
-    color: rgb(246, 188, 55);
+    color: #ffbf23;
     text-decoration: underline;
     font-style: italic;
 }

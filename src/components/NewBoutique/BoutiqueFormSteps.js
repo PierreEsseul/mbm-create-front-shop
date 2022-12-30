@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React, { useState } from 'react';
 
 import Step1 from './NewArticleForm/Step1';
 import Step2 from './NewArticleForm/Step2';
@@ -10,6 +9,7 @@ import ConfirmStep from './NewArticleForm/ConfirmStep';
 import { Popup } from '../Popup/Popup';
 
 import './BoutiqueFormSteps.css'
+
 
 const BoutiqueFormSteps = (props) => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -23,8 +23,9 @@ const BoutiqueFormSteps = (props) => {
     const [checkPayments, setCheckPayments] = useState('');
 
     const [open, setOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    const mailChangeHandler = (event) => {
+    const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
         console.log(event.target.value);
     };
@@ -76,6 +77,39 @@ const BoutiqueFormSteps = (props) => {
         }
     };
 
+    const formSteps = [
+        <Step1 
+            onValue={enteredMail}
+            onChange={mailChangeHandler} />,
+        <Step2 
+            onValue={enteredShopName}
+            onChange={shopNameChangeHandler} />,
+        <Step3 
+            onValueArticle={enteredArticleName}
+            onChangeArticle={articleNameChangeHandler}
+            onValueDescription={enteredDescription}
+            onChangeDescription={descriptionChangeHandler}
+            onValuePhoto={enteredImage}
+            onChangePhoto={fileChangeHandler}
+            onValuePrice={enteredAmount}
+            onChangePrice={amountChangeHandler} />,
+        <Step4 
+            onValueDelivery={'delivery'}
+            onCheckedDelivery={checkRecovers.includes('delivery')}
+            onChangeDelivery={recoverChangeHandler}
+            onValuePickup={'pickup'}
+            onCheckedPickup={checkRecovers.includes('pickup')}
+            onChangePickup={recoverChangeHandler} />,
+        <Step5 
+            onValueCard={'card'}
+            onCheckedCard={checkPayments.includes('card')}
+            onChangeCard={paymentChangeHandler}
+            onValueCash={'cash'}
+            onCheckedCash={checkPayments.includes('cash')}
+            onChangeCash={paymentChangeHandler} />,
+        <ConfirmStep />,
+    ];
+
     const saveArticleDataHandler = (enteredArticleData) => {
         const articleData = {
             ...enteredArticleData,
@@ -113,55 +147,46 @@ const BoutiqueFormSteps = (props) => {
         setCurrentStep(currentStep - 1);
     }
 
-    function goToNextStep() {
-        setCurrentStep(currentStep + 1);
-    }
+    function goToNextStep(event) {
+        setErrorMessage(null)
+        const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
+        console.log(inputs);
 
-    const formSteps = [
-        <Step1 
-            onValue={enteredMail}
-            onChange={mailChangeHandler} />,
-        <Step2 
-            onValue={enteredShopName}
-            onChange={shopNameChangeHandler} />,
-        <Step3 
-            onValueArticle={enteredArticleName}
-            onChangeArticle={articleNameChangeHandler}
-            onValueDescription={enteredDescription}
-            onChangeDescription={descriptionChangeHandler}
-            onValuePhoto={enteredImage}
-            onChangePhoto={fileChangeHandler}
-            onValuePrice={enteredAmount}
-            onChangePrice={amountChangeHandler} />,
-        <Step4 
-            onValueDelivery={'delivery'}
-            onCheckedDelivery={checkRecovers.includes('delivery')}
-            onChangeDelivery={recoverChangeHandler}
-            onValuePickup={'pickup'}
-            onCheckedPickup={checkRecovers.includes('pickup')}
-            onChangePickup={recoverChangeHandler} />,
-        <Step5 
-            onValueCard={'card'}
-            onCheckedCard={checkPayments.includes('card')}
-            onChangeCard={paymentChangeHandler}
-            onValueCash={'cash'}
-            onCheckedCash={checkPayments.includes('cash')}
-            onChangeCash={paymentChangeHandler} />,
-        <ConfirmStep />,
-    ];
+        if (currentStep === 0){
+            const isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[0][0]);
+
+            if (isEmail) {
+                setCurrentStep(currentStep + 1);
+            } else {
+                setErrorMessage('Vous devez saisir une adresse mail valide');
+            }
+        }else if (inputs[currentStep].every(input => input.length)){
+            setCurrentStep(currentStep + 1);
+        }else {
+            setErrorMessage('Veuillez renseigner tous les champs');
+        }  
+    }
 
     return (
         <div className='new-boutique__controls'>
             <form onSubmit={submitHandler}>
                 {formSteps[currentStep]}
+                <div className='new-boutique__errorMessage'>
+                    {errorMessage && (
+                        <div>{errorMessage}</div>
+                    )}
+                </div>
                 <div className='new-boutique__actions'>
                     {currentStep === 2 && (
                         <button type="submit" onClick={saveArticleDataHandler} onClick={() => setOpen(true)}>Ajouter un autre article</button>
                     )} 
                     {open ? <Popup text="L'article est bien enregistré, vous pouvez ajouter un nouvel article ou
                     cliquer sur le bouton Suivant" closePopup={() => setOpen(false)}/> : null}
-                    {currentStep !== 5 && (
-                        <button type='submit' onClick={goToNextStep}>Suivant</button>
+                    {currentStep < 4 && (
+                        <button type='button' onClick={goToNextStep}>Suivant</button>
+                    )}
+                    {currentStep === 4 && (
+                        <button type='submit' onClick={goToNextStep}>Enregistrer votre Boutique</button>
                     )}
                 </div>
 
