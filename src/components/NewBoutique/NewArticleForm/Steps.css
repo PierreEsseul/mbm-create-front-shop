@@ -1,5 +1,6 @@
 .new-boutique__controls {
     height: 500px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
@@ -14,6 +15,7 @@
 }
 
 .new-boutique__control input, textarea {
+    font-weight: bold;
     font: inherit;
     padding: 0.3rem;
     border-radius: 20px;
@@ -53,6 +55,9 @@ button, .redirection{
     border-radius: 12px;
     color: black;
 }
+.redirection {
+    margin-top: -0.3rem;
+}
 
 #photo{
     border: none;
@@ -80,4 +85,27 @@ h2 {
     width: 100%;
     text-align: center;
     font-size: 1em;
+}
+
+@media (max-height: 550px) {
+    .new-boutique__controls {
+        height: 400px;
+    }
+}
+
+@media (min-width: 769px) {
+    .new-boutique__controls {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    
+    .new-boutique__control {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
 }

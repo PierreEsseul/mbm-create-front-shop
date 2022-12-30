@@ -104,16 +104,11 @@ const BoutiqueFormSteps = (props) => {
     const saveArticleDataHandler = (enteredArticleData) => {
         const articleData = {
             ...enteredArticleData,
-            id: Math.floor((Math.random()*10).toString()),
         };
+        console.log(articleData);
         props.onAddArticle(articleData);
 
-        console.log(articleData);
-
-        setEnteredArticleName('');
-        setEnteredDescription('');
-        setEnteredImage('');
-        setEnteredAmount('');
+        
     };
 
     const submitHandler = (event) => {
@@ -129,8 +124,16 @@ const BoutiqueFormSteps = (props) => {
             recover: checkRecovers,
             payment: checkPayments,
         }
+        if(currentStep === 4){
+            goToNextStep();
+        }
+        console.log(boutiqueData); 
+        setEnteredArticleName('');
+        setEnteredDescription('');
+        setEnteredImage('');
+        setEnteredAmount('');
 
-        console.log(boutiqueData);              
+        
     };
 
     function goToPreviousStep() {
@@ -138,9 +141,8 @@ const BoutiqueFormSteps = (props) => {
     }
 
     function goToNextStep(event) {
-        setErrorMessage(null)
+        setErrorMessage(null);
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
-        console.log(inputs);
 
         if (currentStep === 0){
             const isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[0][0]);
@@ -155,10 +157,10 @@ const BoutiqueFormSteps = (props) => {
         }else {
             setErrorMessage('Veuillez renseigner tous les champs');
         }  
+        
     }
 
     return (
-        <div className='new-boutique__controls'>
             <form onSubmit={submitHandler}>
                 {formSteps[currentStep]}
                 <div className='new-boutique__errorMessage'>
@@ -168,7 +170,8 @@ const BoutiqueFormSteps = (props) => {
                 </div>
                 <div className='new-boutique__actions'>
                     {currentStep === 2 && (
-                        <button type="submit" onClick={saveArticleDataHandler} onClick={() => setOpen(true)}>Ajouter un autre article</button>
+                        <button type="submit" onClick={() => setOpen(true)}>Ajouter un autre article</button>
+                        //() => setOpen(true)
                     )} 
                     {open ? <Popup text="L'article est bien enregistré, vous pouvez ajouter un nouvel article ou
                     cliquer sur le bouton Suivant" closePopup={() => setOpen(false)}/> : null}
@@ -176,7 +179,7 @@ const BoutiqueFormSteps = (props) => {
                         <button type='button' onClick={goToNextStep}>Suivant</button>
                     )}
                     {currentStep === 4 && (
-                        <button type='submit' onClick={goToNextStep}>Enregistrer votre Boutique</button>
+                        <button type='submit' onClick={submitHandler}>Enregistrer votre Boutique</button>
                     )}
                 </div>
 
@@ -187,9 +190,6 @@ const BoutiqueFormSteps = (props) => {
                 </div>
             )}
             </form>
-           
-            
-        </div>
       );
 };
 

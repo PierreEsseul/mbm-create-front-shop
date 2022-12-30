@@ -12,20 +12,23 @@ code {
     monospace;
 }
 
+@media (max-height: 550px) {
+  body {
+    width: 320;
+    height: 550px;
+  }
+}
+
 @media (min-width: 500px) and (max-width: 768px) {
   body {
     width: 500px;
     margin: auto;
-  }
-   
-    
+  }    
 }
 
 @media (min-width: 769px) {
   body {
-    width: 600px;
+    width: 700px;
     margin: auto;
-  }
-   
-    
+  }   
 }
