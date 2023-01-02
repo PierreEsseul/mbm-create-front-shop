@@ -16,7 +16,7 @@ form {
 }
 
 .new-boutique__errorMessage {
-    color: rgb(231, 78, 56);
+    color: #fe393c;
     text-align: center;
     margin-bottom: 0.6rem;
 }

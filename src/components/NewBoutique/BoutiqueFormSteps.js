@@ -24,6 +24,7 @@ const BoutiqueFormSteps = (props) => {
 
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [articles, setArticles] = useState([]);
 
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
@@ -101,14 +102,21 @@ const BoutiqueFormSteps = (props) => {
             onUserMail={enteredMail} />,
     ];
 
-    const saveArticleDataHandler = (enteredArticleData) => {
+    const saveArticleDataHandler = () => {
+        setOpen(true);
         const articleData = {
-            ...enteredArticleData,
+            articleName: enteredArticleName,
+            description: enteredDescription,
+            image: enteredImage,
+            amount: enteredAmount,
         };
-        console.log(articleData);
-        props.onAddArticle(articleData);
-
         
+        setArticles([...articles, articleData]);
+        
+        setEnteredArticleName('');
+        setEnteredDescription('');
+        setEnteredImage('');
+        setEnteredAmount('');
     };
 
     const submitHandler = (event) => {
@@ -117,33 +125,30 @@ const BoutiqueFormSteps = (props) => {
         const boutiqueData = {
             mail: enteredMail,
             shopName: enteredShopName,
-            articleName: enteredArticleName,
-            description: enteredDescription,
-            image: enteredImage,
-            amount: enteredAmount,
             recover: checkRecovers,
             payment: checkPayments,
+            articles: enteredArticleName ? [...articles,{ 
+                articleName: enteredArticleName,
+                description: enteredDescription,
+                image: enteredImage,
+                amount: enteredAmount,
+            }] : articles,
         }
+        
         if(currentStep === 4){
             goToNextStep();
         }
-        console.log(boutiqueData); 
-        setEnteredArticleName('');
-        setEnteredDescription('');
-        setEnteredImage('');
-        setEnteredAmount('');
-
-        
     };
 
     function goToPreviousStep() {
+        setErrorMessage(null);
         setCurrentStep(currentStep - 1);
     }
 
     function goToNextStep(event) {
         setErrorMessage(null);
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
-
+        console.log(articles);
         if (currentStep === 0){
             const isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[0][0]);
 
@@ -152,7 +157,7 @@ const BoutiqueFormSteps = (props) => {
             } else {
                 setErrorMessage('Vous devez saisir une adresse mail valide');
             }
-        }else if (inputs[currentStep].every(input => input.length)){
+        }else if (inputs[currentStep].every(input => input.length) || articles.length !== 0){
             setCurrentStep(currentStep + 1);
         }else {
             setErrorMessage('Veuillez renseigner tous les champs');
@@ -170,16 +175,14 @@ const BoutiqueFormSteps = (props) => {
                 </div>
                 <div className='new-boutique__actions'>
                     {currentStep === 2 && (
-                        <button type="submit" onClick={() => setOpen(true)}>Ajouter un autre article</button>
-                        //() => setOpen(true)
+                        <button type="button" onClick={saveArticleDataHandler}>Ajouter un autre article</button>
                     )} 
-                    {open ? <Popup text="L'article est bien enregistré, vous pouvez ajouter un nouvel article ou
-                    cliquer sur le bouton Suivant" closePopup={() => setOpen(false)}/> : null}
+                    <Popup text="Votre article est bien enregistré" open={open} closePopup={() => setOpen(false)}/>
                     {currentStep < 4 && (
                         <button type='button' onClick={goToNextStep}>Suivant</button>
                     )}
                     {currentStep === 4 && (
-                        <button type='submit' onClick={submitHandler}>Enregistrer votre Boutique</button>
+                        <button type='submit'>Enregistrer votre Boutique</button>
                     )}
                 </div>
 
