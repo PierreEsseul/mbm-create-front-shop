@@ -1,12 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import BoutiqueFormSteps from './components/NewBoutique/BoutiqueFormSteps';
+import HomePage from './components/HomePage/HomePage';
 
 
 function App() {
   return (
     <div>
-      <BoutiqueFormSteps />
+      <Header />
+      <Router>
+        <Routes>
+            <Route exact path='/' element={<HomePage />} />
+            <Route path='/create-shop' element={<BoutiqueFormSteps />} />
+            {/* <Route path="*" element={<NoMatch />} /> */}
+        </Routes>
+      </Router>
+      <Footer />
     </div>
   );
 };
