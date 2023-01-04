@@ -1,0 +1,28 @@
+.error {
+    
+    width: 100%;
+    height: 450px;
+}
+
+.error__404 {
+    width: 100%;
+    height: 50%;
+    color: #91c1ed;
+    font-size: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  
+}
+
+.error__message {
+    width: 100%;
+    height: 50%;
+    margin-top: -5px;
+    background-color: #91c1ed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    color: #0c6cc5;
+}

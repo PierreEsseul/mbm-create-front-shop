@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import BoutiqueFormSteps from './components/NewBoutique/BoutiqueFormSteps';
 import HomePage from './components/HomePage/HomePage';
+import Error404 from './components/Error/Error404';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route path='/create-shop' element={<BoutiqueFormSteps />} />
-            {/* <Route path="*" element={<NoMatch />} /> */}
+            <Route path="*" element={<Error404/>} />
         </Routes>
       </Router>
       <Footer />
