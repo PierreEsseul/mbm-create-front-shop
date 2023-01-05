@@ -21,10 +21,11 @@ h2 {
 
 .home-page__how {
     background-color: #ffbf25;
-    height: 280px;
+    height: 300px;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin: 3rem 0px 3rem 0px;
+    padding-top: 2rem;
 }
 
 .home-page__how span {
@@ -33,6 +34,8 @@ h2 {
 
 .home-page__how-description {
     font-size: small;
+    margin-right: 0.5rem;
+    text-align: justify;
 }
 
 .home-page__offer-asset{
@@ -58,11 +61,21 @@ h2 {
     margin-top: 2rem;
 }
 
+.home-page__ordered p {
+    margin-right: 0.5rem;
+    text-align: justify;
+}
+
 .home-page__ordered-image, .home-page__header-image {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.home-page__getStart{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .home-page__getStart-image{
@@ -100,7 +113,7 @@ h2 {
 .home-page__contact-logo {
     width: 30%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .create-shop{
     width: 100%;
