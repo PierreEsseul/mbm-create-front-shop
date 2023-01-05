@@ -6,7 +6,7 @@ const Ordered = () => {
     return (
         <div className='home-page__ordered'>
             <div className='home-page__ordered-image'>
-                <img src="https://via.placeholder.com/300" alt="commande en ligne de produit" />
+                <img src="/img/svg/windowDiscussion.svg" alt="commande en ligne de produit" />
             </div>
             <div>
                 <h2>Ne perdez aucune commande</h2>

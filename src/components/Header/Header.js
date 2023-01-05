@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div className='header'>
             <div className='header__logo'>
-                <a href="/"><img src="./img/logo_MBM_mini.png" alt="logo MadeByMe" /></a>
+                <a href="/"><img src="./img/svg/logo_TitleMDM.svg" alt="logo MadeByMe" /></a>
             </div>
             <div>
                 <BurgerMenu />

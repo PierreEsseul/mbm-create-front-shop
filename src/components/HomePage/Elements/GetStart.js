@@ -38,7 +38,7 @@ const GetStart = () => {
                 </div>
             </div>
             <div className='home-page__getStart-image'>
-                <img src="/img/confirmImg.png" alt="image de personne créant un site internet" />
+                <img src="/img/svg/constructPaint.svg" alt="image de personne créant un site internet" />
             </div>
             <div className='home-page__newsletter'>
                 <p>Abonnez-vous pour plus d'infos et d'actu !</p>

@@ -188,8 +188,8 @@ const BoutiqueFormSteps = (props) => {
 
             {currentStep > 0 && currentStep < 5 && (
             <div className='new-boutique__arrows'>
-                <button type='button' onClick={goToPreviousStep}><img src="/img/arrowUp.png" alt="bouton pour revenir sur la page précédente" /></button>
-                <button type='button' onClick={goToNextStep}><img src="/img/arrowDown.png" alt="bouton pour passer à la page suivante" /></button>
+                <button type='button' onClick={goToPreviousStep}><img src="/img/png/arrowUp.png" alt="bouton pour revenir sur la page précédente" /></button>
+                <button type='button' onClick={goToNextStep}><img src="/img/png/arrowDown.png" alt="bouton pour passer à la page suivante" /></button>
             </div>
             )}
         </form>

@@ -13,10 +13,6 @@ h2 {
     padding-left: 0.4rem;
 }
 
-.home-page__header {
-    margin-top: 70px;
-}
-
 .home-page__header-asset {
     display: flex;
     font-size: x-small;
@@ -47,6 +43,11 @@ h2 {
 
 .home-page__offer p {
     font-size: small;
+}
+
+.home-page__offer img {
+    width: 90px;
+    height: 100px;
 }
 
 .home-page__ordered {

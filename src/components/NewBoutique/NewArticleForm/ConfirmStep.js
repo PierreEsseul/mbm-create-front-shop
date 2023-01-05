@@ -8,7 +8,7 @@ const ConfirmStep = (props) => {
     return (
         <div className='new-boutique__controls'>
             <div className='new-boutique__image'>
-                <img src="/img/confirmImg.png" alt="image madebyme de confirmation" />
+                <img src="/img/svg/constructPaint.svg" alt="image madebyme de confirmation" />
             </div>
 
             <div className='new-boutique__control'>
