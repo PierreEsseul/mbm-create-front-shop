@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer';
 import BoutiqueFormSteps from './components/NewBoutique/BoutiqueFormSteps';
 import HomePage from './components/HomePage/HomePage';
 import Error404 from './components/Error/Error404';
+import Cgu from './components/LegalMention/Cgu';
+import LegalMention from './components/LegalMention/LegalMention';
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Routes>
             <Route exact path='/' element={<HomePage />} />
             <Route path='/create-shop' element={<BoutiqueFormSteps />} />
+            <Route path='/cgu' element={<Cgu />} />
+            <Route path='/legal-mention' element={<LegalMention />} />
             <Route path="*" element={<Error404/>} />
         </Routes>
       </Router>

@@ -6,7 +6,7 @@ import './Header.css';
 const Header = () => {
     return (
         <div className='header'>
-            <div>
+            <div className='header__logo'>
                 <a href="/"><img src="./img/logo_MBM_mini.png" alt="logo MadeByMe" /></a>
             </div>
             <div>
