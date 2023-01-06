@@ -4,9 +4,9 @@ import './Footer.css';
 
 const Footer= () => {
     return (
-        <footer>
+        <div className='footer'>
             <p>&copy; 2023 by Shunt SAS. <a href="/cgu">CGU</a> - <a href="/legal-mention">Mentions légales</a></p>
-        </footer>
+        </div>
     )
 }
 

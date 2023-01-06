@@ -1,12 +1,16 @@
 import React from 'react';
 
+import './Elements.css'
+
 const Header = () => {
     return (
         <div className='home-page__header'>
-            <div className='home-page__header-image'>
-                <img src="/img/svg/constructLego.svg" alt="image construction d'un site"/>
+            <div className='home-page__img-titre'>
+                <div className='home-page__header-image'>
+                    <img src="/img/svg/constructLego.svg" alt="image construction d'un site"/>
+                </div>
+                <h1>Créez votre boutique en 5 min</h1>
             </div>
-            <h1>Créez votre boutique en 5 min</h1>
             <div>
                 <p>MadeByMe, ouvrir ma boutique en ligne<br />
                  gratuitement n'a jamais été aussi simple</p>
