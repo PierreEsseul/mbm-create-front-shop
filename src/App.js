@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import BoutiqueFormSteps from './components/NewBoutique/BoutiqueFormSteps';
+import ShopFormSteps from './components/NewShop/ShopFormSteps';
 import HomePage from './components/HomePage/HomePage';
 import Error404 from './components/Error/Error404';
 import Cgu from './components/LegalMention/Cgu';
@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
             <Route exact path='/' element={<HomePage />} />
-            <Route path='/create-shop' element={<BoutiqueFormSteps />} />
+            <Route path='/create-shop' element={<ShopFormSteps />} />
             <Route path='/cgu' element={<Cgu />} />
             <Route path='/legal-mention' element={<LegalMention />} />
             <Route path="*" element={<Error404/>} />

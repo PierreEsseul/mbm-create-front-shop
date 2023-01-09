@@ -20,7 +20,7 @@ const ConfirmStep = (props) => {
             </div>
 
             <div className='new-boutique__actions'>
-                <a className='redirection' href="#" title="Voir ma boutique">Voir ma boutique</a>
+                <a className='redirection' href={props.urlShop} title="Voir ma boutique">Voir ma boutique</a>
             </div>
         </div>
     )

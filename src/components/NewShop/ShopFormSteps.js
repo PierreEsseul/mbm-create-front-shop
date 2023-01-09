@@ -8,10 +8,11 @@ import Step5 from './NewArticleForm/Step5';
 import ConfirmStep from './NewArticleForm/ConfirmStep';
 import { Popup } from '../Popup/Popup';
 
-import './BoutiqueFormSteps.css'
+import './ShopFormSteps.css'
+import addShopHandler from '../Back/apiShop.js';
 
 
-const BoutiqueFormSteps = (props) => {
+const ShopFormSteps = (props) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [enteredMail, setEnteredMail] = useState('');
     const [enteredShopName, setEnteredShopName] = useState('');
@@ -25,6 +26,7 @@ const BoutiqueFormSteps = (props) => {
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
+    const [urlShop, setUrlShop] = useState(null);
 
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
@@ -99,7 +101,8 @@ const BoutiqueFormSteps = (props) => {
             onCheckedCash={checkPayments.includes('cash')}
             onChangeCash={paymentChangeHandler} />,
         <ConfirmStep
-            onUserMail={enteredMail} />,
+            onUserMail={enteredMail} 
+            urlShop={urlShop}/>,
     ];
 
     const saveArticleDataHandler = () => {
@@ -119,10 +122,10 @@ const BoutiqueFormSteps = (props) => {
         setEnteredAmount('');
     };
 
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();
 
-        const boutiqueData = {
+        const shopData = {
             mail: enteredMail,
             shopName: enteredShopName,
             recover: checkRecovers,
@@ -135,6 +138,16 @@ const BoutiqueFormSteps = (props) => {
             }] : articles,
         }
         
+        // Penser a mettre un loader sur le bouton pour cliquer dessus uniquement lors du retour de l'api
+        // loader hidden
+        addShopHandler(shopData).then(data => {
+            console.log('data: ', data);
+
+            // A remplir avec data.urlShopApi (l'url retourné par le back)
+            setUrlShop(null);
+            // loader ok
+        });
+
         if(currentStep === 4){
             goToNextStep();
         }
@@ -197,4 +210,4 @@ const BoutiqueFormSteps = (props) => {
     );
 };
 
-export default BoutiqueFormSteps;
+export default ShopFormSteps;
