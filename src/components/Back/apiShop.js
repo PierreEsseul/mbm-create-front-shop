@@ -2,7 +2,7 @@ async function addShopHandler(shop) {
 
     try {
     const response = await fetch(
-        `${process.env.REACT_APP_URL_BACK}`,
+        `${process.env.REACT_APP_URL_BACK}/api/form`,
         {
         method: "POST",
         body: JSON.stringify(shop),

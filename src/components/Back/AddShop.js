@@ -4,7 +4,7 @@ async function addShopHandler(shop) {
 
     try {
     const response = await fetch(
-        "https://16fe-2a01-cb1c-103b-3a00-f9e2-da03-ce6f-5b49.ngrok.io/api/form",
+        `${process.env.REACT_APP_URL_BACK}/api/form`,
         {
         method: "POST",
         body: JSON.stringify(shop),
