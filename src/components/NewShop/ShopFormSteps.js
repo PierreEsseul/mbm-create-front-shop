@@ -21,6 +21,13 @@ const ShopFormSteps = (props) => {
     const [enteredImage, setEnteredImage] = useState(null);
     const [enteredAmount, setEnteredAmount] = useState('');
     const [checkRecovers, setCheckRecovers] = useState('');
+    const [enteredAddress, setAddress] = useState({
+        street: '',
+        postalCode: '',
+        city: '',
+        hours:'',
+        phoneNumber:''
+      });
     const [checkPayments, setCheckPayments] = useState('');
 
     const [open, setOpen] = useState(false);
@@ -61,6 +68,10 @@ const ShopFormSteps = (props) => {
         }
     };
 
+    const adressesChangeHandler = (event) => {
+            setAddress({ ...enteredAddress, [event.target.name]: event.target.value });
+    }
+
     const paymentChangeHandler = (event) => {
         const payment = event.target.value;
         if (event.target.checked) {
@@ -90,12 +101,22 @@ const ShopFormSteps = (props) => {
             onValueDelivery={'delivery'}
             onCheckedDelivery={checkRecovers.includes('delivery')}
             onChangeDelivery={recoverChangeHandler}
-            onValuePickup={'pickup'}
-            onCheckedPickup={checkRecovers.includes('pickup')}
-            onChangePickup={recoverChangeHandler} />,
+            onValuePickup={'collect'}
+            onCheckedPickup={checkRecovers.includes('collect')}
+            onChangePickup={recoverChangeHandler} 
+            onValueStreet={enteredAddress.street}
+            onChangeStreet={adressesChangeHandler}
+            onValuePostalCode={enteredAddress.postalCode}
+            onChangePostalCode={adressesChangeHandler}
+            onValueCity={enteredAddress.city}
+            onChangeCity={adressesChangeHandler}
+            onValueHours={enteredAddress.hours}
+            onChangeHours={adressesChangeHandler}
+            onValuePhone={enteredAddress.phoneNumber} 
+            onChangePhone={adressesChangeHandler} />,
         <Step5 
-            onValueCard={'card'}
-            onCheckedCard={checkPayments.includes('card')}
+            onValueCard={'cb'}
+            onCheckedCard={checkPayments.includes('cb')}
             onChangeCard={paymentChangeHandler}
             onValueCash={'cash'}
             onCheckedCash={checkPayments.includes('cash')}
@@ -129,6 +150,7 @@ const ShopFormSteps = (props) => {
             mail: enteredMail,
             shopName: enteredShopName,
             recover: checkRecovers,
+            address: enteredAddress,
             payment: checkPayments,
             articles: enteredArticleName ? [...articles,{ 
                 articleName: enteredArticleName,

@@ -12,10 +12,10 @@ const Step5 = (props) => {
                     <label>
                     <input 
                         type="checkbox" 
-                        id='card'
-                        value={props.onValueCard}
-                        checked={props.onCheckedCard}
-                        onChange={props.onChangeCard} />
+                        id='cb'
+                        value={props.onValueCb}
+                        checked={props.onCheckedCb}
+                        onChange={props.onChangeCb} />
                     Carte bancaire</label>
                     <label>
                     <input 
