@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './ShopFormSteps.css';
 
 import Step1 from './NewArticleForm/Step1';
 import Step2 from './NewArticleForm/Step2';
@@ -8,11 +9,15 @@ import Step5 from './NewArticleForm/Step5';
 import ConfirmStep from './NewArticleForm/ConfirmStep';
 import { Popup } from '../Popup/Popup';
 
-import './ShopFormSteps.css'
+import saveImage from '../../Utilitaire/saveImages';
 import addShopHandler from '../Back/apiShop.js';
 
 
-const ShopFormSteps = (props) => {
+const ShopFormSteps = (props, title) => {
+    useEffect(() => {
+        document.title = "MadeByMe | Créer votre boutique"
+    }, []);
+
     const [currentStep, setCurrentStep] = useState(0);
     const [enteredMail, setEnteredMail] = useState('');
     const [enteredShopName, setEnteredShopName] = useState('');
@@ -33,7 +38,30 @@ const ShopFormSteps = (props) => {
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
+    const [article, setArticle] = useState([]);
     const [urlShop, setUrlShop] = useState(null);
+
+    useEffect(() => {
+        console.log("useEffect Articl - ", article);
+        if (!article || !article.image) {
+            return;
+        }
+
+        const fetchData = async (article) => {
+            // saveImage
+            const urlImage = await saveImage(article.image);
+            setArticles((arts) => [
+                ...arts,
+                {
+                    ...article,
+                    image: urlImage
+                }
+            ])
+        }
+
+        fetchData(article).catch((err) => console.log('fetchData().catch - err :>> ', err));
+
+    }, [article]);
 
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
@@ -52,7 +80,12 @@ const ShopFormSteps = (props) => {
     };
 
     const fileChangeHandler = (event) => {
-        setEnteredImage(event.target.files[0]);
+        console.log("Value event target files[0] : ", {
+          file: event.target.files[0],
+          type: typeof event.target.files[0],
+        });
+        let file = event.target.files[0];
+        setEnteredImage(file);
     }    
     
     const amountChangeHandler = (event) => {
@@ -127,24 +160,32 @@ const ShopFormSteps = (props) => {
     ];
 
     const saveArticleDataHandler = () => {
-        setOpen(true);
-        const articleData = {
-            articleName: enteredArticleName,
-            description: enteredDescription,
-            image: enteredImage,
-            amount: enteredAmount,
-        };
-        
-        setArticles([...articles, articleData]);
+        if (enteredArticleName && enteredDescription && enteredAmount && articles.length !== 0) {
+            setOpen(true)
+        }
+
+        if (enteredArticleName && enteredDescription && !!enteredAmount){
+            setArticle({
+                articleName: enteredArticleName,
+                description: enteredDescription,
+                image: enteredImage,
+                amount: enteredAmount
+            });
+        }
+
+        // console.log('Value articles in ShopFormStep l.150', articles);
+        // console.log('Value articleData in ShopFormStep l.149', article);
         
         setEnteredArticleName('');
         setEnteredDescription('');
-        setEnteredImage('');
+        setEnteredImage(null);
         setEnteredAmount('');
+
     };
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        // console.log('submitHandler() - articles :>> ', articles);
 
         const shopData = {
             mail: enteredMail,
@@ -152,13 +193,10 @@ const ShopFormSteps = (props) => {
             recover: checkRecovers,
             address: enteredAddress,
             payment: checkPayments,
-            articles: enteredArticleName ? [...articles,{ 
-                articleName: enteredArticleName,
-                description: enteredDescription,
-                image: enteredImage,
-                amount: enteredAmount,
-            }] : articles,
+            articles: articles,
         }
+
+        console.log('Value shopData in ShopFormStep L.196 : ', shopData);
         
         // Penser a mettre un loader sur le bouton pour cliquer dessus uniquement lors du retour de l'api
         // loader hidden
@@ -182,8 +220,19 @@ const ShopFormSteps = (props) => {
 
     function goToNextStep(event) {
         setErrorMessage(null);
+
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
-        console.log(articles);
+        console.log('goToNextStep() articles - ', articles);
+        console.log('currentStep :>> ', currentStep);
+        if (currentStep === 2){
+            // console.log("if seul");
+            saveArticleDataHandler();
+            // console.log('goToNextStep() - articles :>> ', articles);
+             // Soit enregistrement de tous les images en meme temps (dans le goToNextStep())
+            // saveImages(articles.map((article) => article.image));
+            
+        }
+
         if (currentStep === 0){
             const isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[0][0]);
 
@@ -193,11 +242,12 @@ const ShopFormSteps = (props) => {
                 setErrorMessage('Vous devez saisir une adresse mail valide');
             }
         }else if (inputs[currentStep].every(input => input.length) || articles.length !== 0){
+            console.log("else if");
             setCurrentStep(currentStep + 1);
         }else {
             setErrorMessage('Veuillez renseigner tous les champs');
-        }  
-        
+        }
+       
     }
 
     return (
@@ -210,9 +260,12 @@ const ShopFormSteps = (props) => {
             </div>
             <div className='new-boutique__actions'>
                 {currentStep === 2 && (
-                    <button type="button" onClick={saveArticleDataHandler}>Ajouter un autre article</button>
+                    <button type="button" onClick={saveArticleDataHandler} id='addArticle'>Ajouter article</button>
                 )} 
-                <Popup text="Votre article est bien enregistré" open={open} closePopup={() => setOpen(false)}/>
+                <Popup 
+                    text="Votre article est bien enregistré vous pouvez en ajouter un autre" 
+                    open={open} 
+                    closePopup={() => setOpen(false)} />
                 {currentStep < 4 && (
                     <button type='button' onClick={goToNextStep}>Suivant</button>
                 )}

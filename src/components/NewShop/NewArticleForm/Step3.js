@@ -30,8 +30,8 @@ const Step3 = (props) => {
                 <div className='new-boutique__control'>
                     <label>Télécharger une photo :</label>
                     <input type="file" 
-                        id="photo" 
-                        name="photo" 
+                        id="image" 
+                        name="image" 
                         accept="image/*" 
                         onChange={props.onChangePhoto} />
                     {props.onnValuePhoto && <p>{props.onnValuePhoto.name}</p>}
