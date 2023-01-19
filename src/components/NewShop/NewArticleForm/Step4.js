@@ -7,9 +7,14 @@ const Step4 = (props) => {
   
 
   const handleCheckboxChange = (event) => {
-    if (event.target.id === 'collect') {
-      setIsChecked(event.target.checked);
-    }
+    if (event.target.id === 'delivery') {
+        props.onChangeDelivery(event);
+        
+    } else if (event.target.id === 'collect') {
+            setIsChecked(event.target.checked);
+            props.onChangeCollect(event);
+    } 
+    
   }
 
   return (
@@ -25,7 +30,7 @@ const Step4 = (props) => {
                     id='delivery'
                     value={props.onValueDelivery}
                     checked={props.onCheckedDelivery}
-                    onChange={props.onChangeDelivery}
+                    onChange={handleCheckboxChange}
                     />
                     Livraison
                 </label>

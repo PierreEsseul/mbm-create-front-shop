@@ -1,5 +1,3 @@
-
-
 async function addShopHandler(shop) {
 
     try {

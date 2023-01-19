@@ -9,7 +9,7 @@ import Step5 from './NewArticleForm/Step5';
 import ConfirmStep from './NewArticleForm/ConfirmStep';
 import { Popup } from '../Popup/Popup';
 
-import saveImage from '../../Utilitaire/saveImages';
+import saveImage from '../../Utilitaire/saveImage';
 import addShopHandler from '../Back/apiShop.js';
 
 
@@ -38,30 +38,30 @@ const ShopFormSteps = (props, title) => {
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
-    const [article, setArticle] = useState([]);
+    // const [article, setArticle] = useState([]);
     const [urlShop, setUrlShop] = useState(null);
 
-    useEffect(() => {
-        console.log("useEffect Articl - ", article);
-        if (!article || !article.image) {
-            return;
-        }
+    // useEffect(() => {
+    //     console.log("useEffect Articl - ", articles);
+    //     if (!articles || !articles.image) {
+    //         return;
+    //     }
 
-        const fetchData = async (article) => {
-            // saveImage
-            const urlImage = await saveImage(article.image);
-            setArticles((arts) => [
-                ...arts,
-                {
-                    ...article,
-                    image: urlImage
-                }
-            ])
-        }
+    //     const fetchData = async (articles) => {
+    //         // saveImage
+    //         const urlImage = await saveImage(articles.image);
+    //         setArticles((arts) => [
+    //             ...arts,
+    //             {
+    //                 ...articles,
+    //                 image: urlImage
+    //             }
+    //         ])
+    //     }
 
-        fetchData(article).catch((err) => console.log('fetchData().catch - err :>> ', err));
+    //     fetchData(article).catch((err) => console.log('fetchData().catch - err :>> ', err));
 
-    }, [article]);
+    // }, [articles]);
 
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
@@ -134,9 +134,9 @@ const ShopFormSteps = (props, title) => {
             onValueDelivery={'delivery'}
             onCheckedDelivery={checkRecovers.includes('delivery')}
             onChangeDelivery={recoverChangeHandler}
-            onValuePickup={'collect'}
-            onCheckedPickup={checkRecovers.includes('collect')}
-            onChangePickup={recoverChangeHandler} 
+            onValueCollect={'collect'}
+            onCheckedCollect={checkRecovers.includes('collect')}
+            onChangeCollect={recoverChangeHandler} 
             onValueStreet={enteredAddress.street}
             onChangeStreet={adressesChangeHandler}
             onValuePostalCode={enteredAddress.postalCode}
@@ -148,9 +148,9 @@ const ShopFormSteps = (props, title) => {
             onValuePhone={enteredAddress.phoneNumber} 
             onChangePhone={adressesChangeHandler} />,
         <Step5 
-            onValueCard={'cb'}
-            onCheckedCard={checkPayments.includes('cb')}
-            onChangeCard={paymentChangeHandler}
+            onValueCb={'cb'}
+            onCheckedCb={checkPayments.includes('cb')}
+            onChangeCb={paymentChangeHandler}
             onValueCash={'cash'}
             onCheckedCash={checkPayments.includes('cash')}
             onChangeCash={paymentChangeHandler} />,
@@ -159,33 +159,39 @@ const ShopFormSteps = (props, title) => {
             urlShop={urlShop}/>,
     ];
 
-    const saveArticleDataHandler = () => {
-        if (enteredArticleName && enteredDescription && enteredAmount && articles.length !== 0) {
-            setOpen(true)
-        }
-
+    const saveArticleDataHandler = async () => {
+        
         if (enteredArticleName && enteredDescription && !!enteredAmount){
-            setArticle({
+            setOpen(true);
+
+            const article = {
                 articleName: enteredArticleName,
                 description: enteredDescription,
                 image: enteredImage,
                 amount: enteredAmount
-            });
+            };
+
+            setEnteredArticleName('');
+            setEnteredDescription('');
+            setEnteredImage(null);
+            setEnteredAmount('');
+            
+            try {
+                const imageUrl= await saveImage(article.image);
+                article.image = imageUrl;
+                setArticles([...articles, article]);
+
+            } catch (err) {
+                console.log('err :>> ', err);
+            }
+
         }
 
-        // console.log('Value articles in ShopFormStep l.150', articles);
-        // console.log('Value articleData in ShopFormStep l.149', article);
-        
-        setEnteredArticleName('');
-        setEnteredDescription('');
-        setEnteredImage(null);
-        setEnteredAmount('');
-
+        console.log('Value articles in ShopFormStep', articles);
     };
 
     const submitHandler = async (event) => {
         event.preventDefault();
-        // console.log('submitHandler() - articles :>> ', articles);
 
         const shopData = {
             mail: enteredMail,
@@ -196,7 +202,7 @@ const ShopFormSteps = (props, title) => {
             articles: articles,
         }
 
-        console.log('Value shopData in ShopFormStep L.196 : ', shopData);
+        console.log('Value shopData in ShopFormStep : ', shopData);
         
         // Penser a mettre un loader sur le bouton pour cliquer dessus uniquement lors du retour de l'api
         // loader hidden
@@ -222,13 +228,10 @@ const ShopFormSteps = (props, title) => {
         setErrorMessage(null);
 
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
-        console.log('goToNextStep() articles - ', articles);
-        console.log('currentStep :>> ', currentStep);
         if (currentStep === 2){
-            // console.log("if seul");
             saveArticleDataHandler();
             // console.log('goToNextStep() - articles :>> ', articles);
-             // Soit enregistrement de tous les images en meme temps (dans le goToNextStep())
+            // Soit enregistrement de tous les images en meme temps (dans le goToNextStep())
             // saveImages(articles.map((article) => article.image));
             
         }
@@ -240,14 +243,17 @@ const ShopFormSteps = (props, title) => {
                 setCurrentStep(currentStep + 1);
             } else {
                 setErrorMessage('Vous devez saisir une adresse mail valide');
+                setEnteredMail(enteredMail);
             }
         }else if (inputs[currentStep].every(input => input.length) || articles.length !== 0){
-            console.log("else if");
             setCurrentStep(currentStep + 1);
         }else {
             setErrorMessage('Veuillez renseigner tous les champs');
+            setEnteredArticleName(enteredArticleName);
+            setEnteredDescription(enteredDescription);
+            setEnteredImage(enteredImage);
+            setEnteredAmount(enteredAmount);
         }
-       
     }
 
     return (
@@ -260,10 +266,10 @@ const ShopFormSteps = (props, title) => {
             </div>
             <div className='new-boutique__actions'>
                 {currentStep === 2 && (
-                    <button type="button" onClick={saveArticleDataHandler} id='addArticle'>Ajouter article</button>
+                    <button type="button" onClick={saveArticleDataHandler} id='addArticle'>Ajouter un autre article</button>
                 )} 
                 <Popup 
-                    text="Votre article est bien enregistré vous pouvez en ajouter un autre" 
+                    text="Votre article est bien enregistré" 
                     open={open} 
                     closePopup={() => setOpen(false)} />
                 {currentStep < 4 && (
