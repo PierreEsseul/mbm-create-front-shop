@@ -7,14 +7,8 @@ function BurgerMenu() {
 
   return (
     <div className='burgerMenu'>
-        {/* <a href="#">
-            <img src="/img/burger_icon.png" alt="icon affichage menu" />
-        </a> */}
         <div className='burgerMenu__items'>
-            <Menu 
-                right
-                // customBurgerIcon={ <img src="/img/burger_icon.png" /> }
-                >
+            <Menu right>
                     <a className="menu-item" href="/">Accueil</a>
 
                     <a className="menu-item" href="/create-shop">Créer votre boutique</a>

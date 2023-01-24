@@ -1,5 +1,5 @@
 import React from 'react';
-import BurgerMenu from '../NavBar/BurgerMenu';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 import './Header.css';
 

@@ -20,7 +20,7 @@ function App() {
             <Route path='/create-shop' element={<ShopFormSteps />} />
             <Route path='/cgu' element={<Cgu />} />
             <Route path='/legal-mention' element={<LegalMention />} />
-            <Route path="*" element={<Error404/>} />
+            <Route path='*' element={<Error404/>} />
         </Routes>
       </Router>
       <Footer />
