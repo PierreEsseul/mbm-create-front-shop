@@ -5,7 +5,7 @@ import './Elements.css';
 const How = () => {
     return(
         <div className='home-page__how'>
-            <div>
+            <div className='home-page_how_title'>
                 <h2>Créez <span>gratuitement</span> votre boutique sans avoir à programmer</h2>
             </div>
             <div className='home-page__how-description'>

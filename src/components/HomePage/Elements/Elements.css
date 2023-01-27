@@ -8,10 +8,12 @@ h1{
 }
 
 h2 {
+    display: contents;
     text-align: left;
     font-size: 1.5rem;
-    padding-left: 0.4rem;
 }
+
+
 
 .home-page__header-asset {
     display: flex;
@@ -30,6 +32,10 @@ h2 {
 
 .home-page__how span {
     background-color: #fe393c;
+}
+
+.home-page_how_title{
+    margin-left: 0.4rem;
 }
 
 .home-page__how-description {
