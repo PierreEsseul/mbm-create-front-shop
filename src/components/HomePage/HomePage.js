@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Elements/Header';
+import Welcome from './Elements/Welcome';
 import How from './Elements/How';
 import Offer from './Elements/Offer';
 import Ordered from './Elements/Ordered';
@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
         //TODO header avec logo nav bar
         <div>
-            <Header />
+            <Welcome />
             <How />
             <Offer/>
             <Ordered />

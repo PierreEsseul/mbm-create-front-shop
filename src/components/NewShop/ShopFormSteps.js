@@ -253,36 +253,38 @@ const ShopFormSteps = (props, title) => {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            {formSteps[currentStep]}
-            <div className='new-boutique__errorMessage'>
-                {errorMessage && (
-                    <div>{errorMessage}</div>
-                )}
-            </div>
-            <div className='new-boutique__actions'>
-                {currentStep === 2 && (
-                    <button type="button" onClick={saveArticleDataHandler} id='addArticle'>Ajouter un autre article</button>
-                )} 
-                <Popup 
-                    text="Votre article est bien enregistré" 
-                    open={open} 
-                    closePopup={() => setOpen(false)} />
-                {currentStep < 4 && (
-                    <button type='button' onClick={goToNextStep}>Suivant</button>
-                )}
-                {currentStep === 4 && (
-                    <button type='submit'>Enregistrer votre Boutique</button>
-                )}
-            </div>
+        <div className='body'> 
+            <form onSubmit={submitHandler}>
+                {formSteps[currentStep]}
+                <div className='new-boutique__errorMessage'>
+                    {errorMessage && (
+                        <div>{errorMessage}</div>
+                    )}
+                </div>
+                <div className='new-boutique__actions'>
+                    {currentStep === 2 && (
+                        <button type="button" onClick={saveArticleDataHandler} id='addArticle'>Ajouter un autre article</button>
+                    )} 
+                    <Popup 
+                        text="Votre article est bien enregistré" 
+                        open={open} 
+                        closePopup={() => setOpen(false)} />
+                    {currentStep < 4 && (
+                        <button type='button' onClick={goToNextStep}>Suivant</button>
+                    )}
+                    {currentStep === 4 && (
+                        <button type='submit'>Enregistrer votre Boutique</button>
+                    )}
+                </div>
 
-            {currentStep > 0 && currentStep < 5 && (
-            <div className='new-boutique__arrows'>
-                <button type='button' onClick={goToPreviousStep}><img src="/img/png/arrowUp.png" alt="bouton pour revenir sur la page précédente" /></button>
-                <button type='button' onClick={goToNextStep}><img src="/img/png/arrowDown.png" alt="bouton pour passer à la page suivante" /></button>
-            </div>
-            )}
-        </form>
+                {currentStep > 0 && currentStep < 5 && (
+                <div className='new-boutique__arrows'>
+                    <button type='button' onClick={goToPreviousStep}><img src="/img/png/arrowUp.png" alt="bouton pour revenir sur la page précédente" /></button>
+                    <button type='button' onClick={goToNextStep}><img src="/img/png/arrowDown.png" alt="bouton pour passer à la page suivante" /></button>
+                </div>
+                )}
+            </form>
+        </div>
             
     );
 };

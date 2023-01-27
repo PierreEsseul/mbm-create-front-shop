@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Elements.css'
 
-const Header = () => {
+const Welcome = () => {
     return (
         <div className='home-page__header'>
             <div className='home-page__img-titre'>
@@ -34,4 +34,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Welcome;
