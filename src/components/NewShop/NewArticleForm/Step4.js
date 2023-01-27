@@ -68,7 +68,7 @@ const Step4 = (props) => {
                             value={props.onValueCity}
                             onChange={props.onChangeCity}
                         />
-                        <label>Heures :</label>
+                        <label>Heures d'ouverture :</label>
                         <input
                             type="text"
                             name="hours"

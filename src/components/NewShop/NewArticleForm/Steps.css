@@ -1,5 +1,5 @@
 .new-boutique__controls {
-    height: 500px;
+    height: 400px;
     margin-top: 0.7rem;
     margin-bottom: 1rem;
     width: 100%;
@@ -54,7 +54,7 @@ input:focus, textarea:focus {
     flex-direction: column;
 }
 
-button, .redirection{
+.redirection{
     width: auto;
     padding: 5px 8px 5px 8px;
     text-align: center;
@@ -103,13 +103,13 @@ h2 {
 
 @media (max-height: 550px) {
     .new-boutique__controls {
-        height: 400px;
+        height: 450px;
     }
 }
 
 @media (min-width: 769px) {
     .new-boutique__controls {
-        height: 50rem;
+        height: 450px;
         display: flex;
         flex-direction: column;
         justify-content: center;

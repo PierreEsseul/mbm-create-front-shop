@@ -229,11 +229,7 @@ const ShopFormSteps = (props, title) => {
 
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
         if (currentStep === 2){
-            saveArticleDataHandler();
-            // console.log('goToNextStep() - articles :>> ', articles);
-            // Soit enregistrement de tous les images en meme temps (dans le goToNextStep())
-            // saveImages(articles.map((article) => article.image));
-            
+            saveArticleDataHandler();            
         }
 
         if (currentStep === 0){
