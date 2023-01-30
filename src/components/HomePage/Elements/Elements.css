@@ -3,22 +3,33 @@ p {
     width: auto;
 }
 
-h1{
-    padding-left: 0.4rem;
-}
-
 h2 {
-    display: contents;
+    width: auto;
     text-align: left;
     font-size: 1.5rem;
+    margin-left: 0.5rem;
 }
 
+.home-page__welcome-image {
+    display: flex;
+    justify-content: center;
+}
 
-
-.home-page__header-asset {
+.home-page__welcome-asset {
     display: flex;
     font-size: x-small;
     margin: 1rem;
+}
+
+.home-page__img-titre h1 {
+    padding-left: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+
+.home-page__welcome p{
+    font-weight: normal;
 }
 
 .home-page__how {
@@ -32,10 +43,6 @@ h2 {
 
 .home-page__how span {
     background-color: #fe393c;
-}
-
-.home-page_how_title{
-    margin-left: 0.4rem;
 }
 
 .home-page__how-description {
@@ -52,6 +59,9 @@ h2 {
 
 .home-page__offer p {
     font-size: small;
+    text-align: justify;
+    font-weight: normal;
+    margin-top: 0.8rem;
 }
 
 .home-page__offer img {
@@ -61,7 +71,7 @@ h2 {
 
 .home-page__ordered {
     background-color: #ffd7ed;
-    height: 650px;
+    height: 550px;
     display: flex;
     flex-wrap: wrap;
     margin-top: 2rem;
@@ -69,7 +79,9 @@ h2 {
 
 .home-page__ordered p {
     margin-right: 0.5rem;
-    text-align: justify;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 1.4rem;
 }
 
 .home-page__ordered-image, .home-page__header-image {
@@ -96,7 +108,7 @@ h2 {
     width: 100%;
     height: 90px;
     margin-top: 15px;
-    margin-bottom: 1.7rem;
+    margin-bottom: 1.1rem;
     display: flex;
     justify-content: space-around;
     align-items: center; 
@@ -148,7 +160,7 @@ h2 {
       margin: auto;
     }  
     
-    .home-page__header-image img, .home-page__ordered-image img, .home-page__getStart-image img {
+    .home-page__ordered-image img, .home-page__getStart-image img {
         width: 30rem;
         height: 30rem;
     }
@@ -195,14 +207,13 @@ h2 {
     }
 
     .home-page__img-titre h1 {
+        border: 1px solid black;
         width: 60rem;
         margin-left: 2rem;
         font-size: 4.4rem;
-        color: #91c1ed;
     }
 
-
-    .home-page__header-image img, .home-page__ordered-image img, .home-page__getStart-image img {
+    .home-page__ordered-image img, .home-page__getStart-image img {
         width: 30rem;
         height: 30rem; 
     }

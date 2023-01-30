@@ -2,11 +2,12 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: auto;
     background-color: black;
     color: white;
-    text-align: center;
     font-size: x-small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer a {
