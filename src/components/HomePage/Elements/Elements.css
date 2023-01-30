@@ -41,6 +41,10 @@ h2 {
     padding-top: 2rem;
 }
 
+.home-page__how p {
+    font-weight: normal;
+}
+
 .home-page__how span {
     background-color: #fe393c;
 }
@@ -160,13 +164,17 @@ h2 {
       margin: auto;
     }  
     
-    .home-page__ordered-image img, .home-page__getStart-image img {
+    .home-page__welcome-image, .home-page__ordered-image img, .home-page__getStart-image img {
         width: 30rem;
         height: 30rem;
     }
 
+    .home-page__welcome-asset img {
+        object-fit: none;
+    }
+
     p { 
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     h1{
@@ -200,6 +208,19 @@ h2 {
         font-size: 3.5rem;
     }
     
+    .home-page__welcome-image {
+        width: 30rem;
+        height: 30rem;
+    }
+
+    .home-page__welcome-asset p {
+        font-size: 1.4rem;
+    }
+
+    .home-page__welcome-asset img {
+        object-fit: none;
+    }
+
     .home-page__img-titre {
         display: flex;
         flex-direction: row-reverse;
@@ -207,7 +228,6 @@ h2 {
     }
 
     .home-page__img-titre h1 {
-        border: 1px solid black;
         width: 60rem;
         margin-left: 2rem;
         font-size: 4.4rem;
@@ -224,17 +244,6 @@ h2 {
 
     .home-page__ordered {
         height: 80rem;
-    }
-
-    .home-page__newsletter input {
-        width: 19rem;
-        font-size: 1.4rem;
-        
-    }
-
-    .home-page__newsletter button {
-        border-radius: 2rem 2rem;
-        font-size: 1.4rem;
     }
 
     .contact__mail{
