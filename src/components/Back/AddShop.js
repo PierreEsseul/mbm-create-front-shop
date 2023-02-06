@@ -15,11 +15,6 @@ async function addShopHandler(shop) {
     const data = await response.json();
     console.log("data:", data);
 
-    // if (!data.ok) {
-    //   throw new Error(
-    //     "Une erreur est survenue, veuillez nous excuser pour la gêne occasionnée et réessayer ultérieurement."
-    //   );
-    // }
     } catch (error) {
         console.log('error: ', error);
         

@@ -41,28 +41,6 @@ const ShopFormSteps = (props, title) => {
     // const [article, setArticle] = useState([]);
     const [urlShop, setUrlShop] = useState(null);
 
-    // useEffect(() => {
-    //     console.log("useEffect Articl - ", articles);
-    //     if (!articles || !articles.image) {
-    //         return;
-    //     }
-
-    //     const fetchData = async (articles) => {
-    //         // saveImage
-    //         const urlImage = await saveImage(articles.image);
-    //         setArticles((arts) => [
-    //             ...arts,
-    //             {
-    //                 ...articles,
-    //                 image: urlImage
-    //             }
-    //         ])
-    //     }
-
-    //     fetchData(article).catch((err) => console.log('fetchData().catch - err :>> ', err));
-
-    // }, [articles]);
-
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
     };
@@ -186,8 +164,6 @@ const ShopFormSteps = (props, title) => {
             }
 
         }
-
-        console.log('Value articles in ShopFormStep', articles);
     };
 
     const submitHandler = async (event) => {
