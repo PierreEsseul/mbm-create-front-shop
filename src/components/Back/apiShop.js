@@ -1,4 +1,5 @@
 async function addShopHandler(shop) {
+    console.log('shop :>> ', shop);
 
     try {
     const response = await fetch(
