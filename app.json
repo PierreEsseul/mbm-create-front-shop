@@ -1,0 +1,8 @@
+{
+    "name": "Form MadeByMe",
+    "description": "Formulaire Creation Shop",
+    "repository": "https://github.com/lgiacalo/form-madebyme",
+    "logo": "./public/img/icon/favicon_MBM.png",
+    "keywords": ["node", "express", "static"]
+  }
+  
