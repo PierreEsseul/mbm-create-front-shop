@@ -13,14 +13,14 @@ import saveImage from '../../Utilitaire/saveImage';
 import addShopHandler from '../Back/apiShop.js';
 
 // Firebase - (remove if necessary)
-import {firestore} from "../../Utilitaire/Firebase";
-import {addDoc, collection} from "@firebase/firestore"
+// import {firestore} from "../../Utilitaire/Firebase";
+// import {addDoc, collection} from "@firebase/firestore"
 
 
 const ShopFormSteps = (props, title) => {
 
     // Firebase const 
-    const ref = collection(firestore,"data");
+    // const ref = collection(firestore,"data");
 
 
     useEffect(() => {
@@ -189,11 +189,11 @@ const ShopFormSteps = (props, title) => {
         }
 
         // Firebase 
-        try{
-            addDoc(ref,shopData);
-        }catch(e){
-            console.log(e);
-        }
+        // try{
+        //     addDoc(ref,shopData);
+        // }catch(e){
+        //     console.log(e);
+        // }
         
 
         console.log('Value shopData in ShopFormStep : ', shopData);
