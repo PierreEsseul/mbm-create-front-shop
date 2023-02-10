@@ -42,6 +42,7 @@
   .bm-menu {
     background: rgba(0, 0, 0, 0.7);
     padding: 2.5em 1.5em 0;
+    overflow: hidden !important;
   }
   
   /* Wrapper for item list */

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 import ProgressBar from '../ProgressBar';
+import ReactCrop from 'react-image-crop'
 
 
 const Step3 = (props) => {
+    const [crop, setCrop] = useState({
+        aspect: 16 / 9,
+        unit: 'px',
+        x: 5,
+        y: 5,
+        width: 10,
+        height: 10
+      })
+
     return (
         <div>
             <ProgressBar step={3} />
@@ -34,7 +44,12 @@ const Step3 = (props) => {
                         name="image" 
                         accept="image/*" 
                         onChange={props.onChangePhoto} />
-                    {props.onnValuePhoto && <p>{props.onnValuePhoto.name}</p>}
+                    {props.onValuePhoto && <p>{props.onValuePhoto.name}</p>}
+                    {props.onValuePhoto && 
+                    <ReactCrop crop={crop} onChange={c => {setCrop(c); console.log("dans crop:", c)}}>
+                        <img src={'./img/png/cardPersonnalisez.png'} />
+                    </ReactCrop>}
+                    
                 </div>
                 <div className='new-boutique__control'>
                     <label>Prix de l'article :</label>

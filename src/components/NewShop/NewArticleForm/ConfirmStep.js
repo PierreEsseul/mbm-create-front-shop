@@ -4,7 +4,7 @@ import React from 'react';
 import './Steps.css';
 
 const ConfirmStep = (props) => {
-
+    
     return (
         <div className='new-boutique__controls'>
             <div className='new-boutique__image'>
