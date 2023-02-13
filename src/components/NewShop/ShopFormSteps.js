@@ -19,7 +19,7 @@ import addShopHandler from '../Back/apiShop.js';
 
 const ShopFormSteps = (props, title) => {
 
-    // // Firebase const 
+    // Firebase const 
     // const ref = collection(firestore,"data");
 
 
@@ -187,7 +187,7 @@ const ShopFormSteps = (props, title) => {
             articles: articles,
         }
 
-        // // Firebase 
+        // Firebase 
         // try{
         //     addDoc(ref,shopData);
         // }catch(e){
