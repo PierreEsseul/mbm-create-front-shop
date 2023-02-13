@@ -34,3 +34,15 @@
     display: block;
     margin: auto;
 }
+
+@media (min-width: 769px){
+    .popup-body{
+        position: fixed;
+        left: 200px;
+        right: 200px;
+        bottom: 250px;
+        top: 280px;
+        height: 120px;
+    }
+    
+}
