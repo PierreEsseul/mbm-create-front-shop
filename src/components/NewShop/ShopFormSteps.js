@@ -50,6 +50,8 @@ const ShopFormSteps = (props, title) => {
     // const [article, setArticle] = useState([]);
     const [urlShop, setUrlShop] = useState(null);
 
+    
+
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
     };

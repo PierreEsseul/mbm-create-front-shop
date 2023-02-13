@@ -1,18 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, {useState} from 'react';
 
 import ProgressBar from '../ProgressBar';
-import ReactCrop from 'react-image-crop'
-
+import PopupDimImg from '../../PopupDimImg/PopupDimImg';
 
 const Step3 = (props) => {
-    const [crop, setCrop] = useState({
-        aspect: 16 / 9,
-        unit: 'px',
-        x: 5,
-        y: 5,
-        width: 10,
-        height: 10
-      })
+    
+
+    const [open, setOpen] = useState(false);
+
+
+    function openPopup(){
+        setOpen(true);
+    }
 
     return (
         <div>
@@ -38,18 +37,17 @@ const Step3 = (props) => {
                     ></textarea>
                 </div>
                 <div className='new-boutique__control'>
-                    <label>Télécharger une photo :</label>
+                    <button onClick={openPopup}>Télécharger une photo</button>
+
+                    {open && (<PopupDimImg/>)}
+                    
+                    {/* <label>Télécharger une photo :</label>
                     <input type="file" 
                         id="image" 
                         name="image" 
                         accept="image/*" 
                         onChange={props.onChangePhoto} />
-                    {props.onValuePhoto && <p>{props.onValuePhoto.name}</p>}
-                    {props.onValuePhoto && 
-                    <ReactCrop crop={crop} onChange={c => {setCrop(c); console.log("dans crop:", c)}}>
-                        <img src={'./img/png/cardPersonnalisez.png'} />
-                    </ReactCrop>}
-                    
+                    {props.onValuePhoto && <p>{props.onValuePhoto.name}</p>}              */}
                 </div>
                 <div className='new-boutique__control'>
                     <label>Prix de l'article :</label>

@@ -11,7 +11,6 @@ const BtnLoad = () => {
   const frameBtn = useRef(null);
   const loadingIcon = useRef(null);
   const loadingProgress = useRef(null);
-  //const loadingBtn = useRef('.progress-area .area-right')
   const tick1 = useRef(null);
   const tick2 = useRef(null);
   const doneText = useRef(null);
@@ -89,7 +88,6 @@ const BtnLoad = () => {
       easing: 'easeOutQuad'
     })
 
-    // let aniLoadingIcon = 
     anime({
       targets: loadingIcon.current,
       rotateZ: 360,
@@ -107,16 +105,6 @@ const BtnLoad = () => {
       easing: 'easeOutQuart'
     })
 
-    // anime({
-    //   targets: loadingBtn.current,
-    //   translateY: ['15px', '0'],
-    //   opacity: [0, 1],
-    //   delay: 350,
-    //   duration: 1000,
-    //   easing: 'easeOutQuart'
-    // })
-
-    // let aniProgress = 
     anime({
       targets: progress,
       value: '100%',
@@ -130,7 +118,6 @@ const BtnLoad = () => {
       }
     })
 
-    // let aniFrameBtn = 
     anime({
       targets: frameBtn.current,
       strokeDashoffset: [525, 0],
