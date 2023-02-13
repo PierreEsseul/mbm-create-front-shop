@@ -34,12 +34,12 @@
 .complete-area {
     position: absolute;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 150%;
     color: #ffbf23;
     user-select: none;
     opacity: 1;
@@ -57,37 +57,6 @@
 .area-left span {
     width: 50px;
     text-align: right;
-}
-
-.area-right {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 20px;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    border-left: 1px solid #c08b07;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.area-right:hover {
-    height: 40px;
-    transition: 250ms height;
-}
-
-.area-right:hover svg {
-    opacity: 1;
-}
-
-.area-right svg {
-    opacity: .5;
-    transition: 250ms;
-}
-
-.area-right .btn-play {
-    position: absolute;
-    transform: translateY(40px);
 }
 
 .complete-area {
@@ -111,9 +80,10 @@
 }
 
 .complete-area span {
-    color: #fffd;
+    color: black;
     padding-bottom: 1px;
     opacity: 0;
+    font-weight: bold;
 }
 
 .frame-btn {
