@@ -164,8 +164,7 @@ const ShopFormSteps = (props, title) => {
             setEnteredAmount('');
             
             try {
-                console.log('saveArticleDataHandler() article :>> ', article);
-                const imageUrl= article.image ? await saveImage(article.image) : null;
+                const imageUrl = article.image ? await saveImage(article.image) : null;
                 article.image = imageUrl;
                 setArticles([...articles, article]);
 

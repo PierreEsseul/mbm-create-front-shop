@@ -25,8 +25,12 @@
     color:  #07875d;
 }
 
+.popup-body p {
+    margin-bottom: 1.6rem;
+}
+
 .close{
     background-color: #ffbf23;
-    margin-top: 1rem;
-    margin-right: 2rem;
+    display: block;
+    margin: auto;
 }

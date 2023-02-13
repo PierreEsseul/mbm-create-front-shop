@@ -1,5 +1,5 @@
 import React from 'react';
-
+import BtnLoad from '../../BtnLoad/BtnLoad';
 
 import './Steps.css';
 
@@ -11,7 +11,7 @@ const ConfirmStep = (props) => {
                 <img src="/img/svg/constructPaint.svg" alt="image madebyme de confirmation" />
             </div>
 
-            <div className='new-boutique__control'>
+            <div className='new-boutique__control-text'>
                 <p className='new-boutique__confirm'>Votre boutique est prête ;)</p>
 
                 <p className='new-boutique__confirm'>On vient de vous envoyer un mail à<br />
@@ -20,8 +20,9 @@ const ConfirmStep = (props) => {
             </div>
 
             <div className='new-boutique__actions'>
-                <a className='redirection' href={props.urlShop} title="Voir ma boutique">Voir ma boutique</a>
+                <a className='redirection' href={props.urlShop} title="Voir ma boutique"><BtnLoad /></a>
             </div>
+            <div></div>
         </div>
     )
 };
