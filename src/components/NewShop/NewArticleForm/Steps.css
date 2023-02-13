@@ -47,8 +47,8 @@ input:focus, textarea:focus {
 }
 
 .new-boutique__actions {
-    height: 25px;
-    width: 100%;
+    height: auto;
+    width: auto;
     display: flex;
     justify-content: space-around;
 }
@@ -61,6 +61,7 @@ input:focus, textarea:focus {
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 .redirection{
     width: auto;
     padding: 5px 8px 5px 8px;
@@ -80,6 +81,8 @@ input:focus, textarea:focus {
     display: block;
 }
 
+=======
+>>>>>>> pierre
 #photo{
     border: none;
 }
