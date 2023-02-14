@@ -68,13 +68,14 @@ const ShopFormSteps = (props, title) => {
         setEnteredDescription(event.target.value);
     };
 
-    const fileChangeHandler = (event) => {
-        console.log("Value event target files[0] : ", {
-          file: event.target.files[0],
-          type: typeof event.target.files[0],
-        });
-        let file = event.target.files[0];
-        setEnteredImage(file);
+    const fileChangeHandler = (image) => {
+        // console.log("Value event target files[0] : ", {
+        //   file: event.target.files[0],
+        //   type: typeof event.target.files[0],
+        // });
+        // let file = event.target.files[0];
+        setEnteredImage(image);
+        console.log("shopformsteps image:", image)
     }    
     
     const amountChangeHandler = (event) => {
