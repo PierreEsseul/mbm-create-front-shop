@@ -37,9 +37,9 @@ const Step3 = (props) => {
                     ></textarea>
                 </div>
                 <div className='new-boutique__control'>
-                    <button onClick={openPopup}>Télécharger une photo</button>
+                    <button onClick={openPopup} className='dowload-btn'>Télécharger une photo</button>
 
-                    {open && (<PopupDimImg/>)}
+                    {open && (<PopupDimImg closePopup={() => {setOpen(false)}}/>)}
                     
                     {/* <label>Télécharger une photo :</label>
                     <input type="file" 

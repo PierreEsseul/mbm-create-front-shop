@@ -10,6 +10,8 @@ import { canvasPreview } from './CanvasPreview'
 import { useDebounceEffect } from './UseDebounceEffect'
 
 import 'react-image-crop/dist/ReactCrop.css'
+import './CropImage.css'
+
 
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
@@ -33,14 +35,16 @@ function centerAspectCrop(
   )
 }
 
-export default function App() {
-  const [imgSrc, setImgSrc] = useState('')
-  const previewCanvasRef = useRef(null)
-  const imgRef = useRef(null)
-  const [crop, setCrop] = useState()
-  const [completedCrop, setCompletedCrop] = useState()
-  const [scale, setScale] = useState(1)
-  const [aspect, setAspect] = useState(16 / 9)
+function CropImage(props) {
+  const [imgSrc, setImgSrc] = useState('');
+  const [crop, setCrop] = useState();
+  const [completedCrop, setCompletedCrop] = useState();
+  const [aspect, setAspect] = useState(1.06/1);
+  const [zoom, setZoom] = useState(100);
+  
+  const previewCanvasRef = useRef(null);
+  const imgRef = useRef(null);
+  
 
   function onSelectFile(e) {
     if (e.target.files && e.target.files.length > 0) {
@@ -72,12 +76,11 @@ export default function App() {
           imgRef.current,
           previewCanvasRef.current,
           completedCrop,
-          scale,
         )
       }
     },
     100,
-    [completedCrop, scale],
+    [completedCrop],
   )
 
   function handleToggleAspectClick() {
@@ -85,31 +88,16 @@ export default function App() {
       setAspect(undefined)
     } else if (imgRef.current) {
       const { width, height } = imgRef.current
-      setAspect(16 / 9)
-      setCrop(centerAspectCrop(width, height, 16 / 9))
+      setAspect(1.06/1)
+      setCrop(centerAspectCrop(width, height, 1.06/1))
     }
   }
 
+  
   return (
-    <div className="App">
-      <div className="Crop-Controls">
+    <div className="crop">
+      <div className="crop-controls">
         <input type="file" accept="image/*" onChange={onSelectFile} />
-        <div>
-          <label htmlFor="scale-input">Scale: </label>
-          <input
-            id="scale-input"
-            type="number"
-            step="0.1"
-            value={scale}
-            disabled={!imgSrc}
-            onChange={(e) => setScale(Number(e.target.value))}
-          />
-        </div>
-        <div>
-          <button onClick={handleToggleAspectClick}>
-            Toggle aspect {aspect ? 'off' : 'on'}
-          </button>
-        </div>
       </div>
       {!!imgSrc && (
         <ReactCrop
@@ -122,7 +110,6 @@ export default function App() {
             ref={imgRef}
             alt="Crop me"
             src={imgSrc}
-            style={{ transform: `scale(${scale})` }}
             onLoad={onImageLoad}
           />
         </ReactCrop>
@@ -132,14 +119,16 @@ export default function App() {
           <canvas
             ref={previewCanvasRef}
             style={{
-              border: '1px solid black',
-              objectFit: 'contain',
-              width: completedCrop.width,
-              height: completedCrop.height,
+              width: 340,
+              height: 320,
             }}
+            onChange={props.onCrop(previewCanvasRef.current)}
           />
         )}
       </div>
+
     </div>
   )
 }
+
+export default CropImage;

@@ -97,6 +97,12 @@ h2 {
 }
 
 
+.dowload-btn{
+    width: 19rem;
+    margin-left: 10px;
+}
+
+
 @media (min-width: 769px) {
     .new-boutique__controls {
         height: 500px;
