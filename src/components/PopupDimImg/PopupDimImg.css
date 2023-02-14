@@ -6,26 +6,30 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.popup-body {
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    bottom: 40%;
-    top: 40%;
-    text-align: center;
-    margin: auto;
-    padding-top: 2rem;
-    border-radius: 15px;
-    border-color: black;
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    color:  #07875d;
+.popup-img-body{
+    padding: 4rem;
+    margin-top: 10rem;
+    justify-content: center;
 }
 
 .valider{
     display: block;
     margin: auto;
+}
+
+
+.MuiSlider-track{
+    color: #ffbf23 !important;
+}
+
+.popup-img-body span {
+    color: white !important;
+}
+
+.popup-img-body button{
+    color: black !important;
+    background-color: #ffbf23 !important;
 }

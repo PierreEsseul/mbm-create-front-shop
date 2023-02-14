@@ -23,6 +23,15 @@
     margin-left: 10px;
 }
 
+.new-boutique__control p {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+    display: block;
+    margin-left: -2.7rem;
+    font-size: 10px;
+}
+
 .new-boutique__control input, textarea {
     font-weight: bold;
     font: inherit;
@@ -142,5 +151,9 @@ h2 {
         width: 100%;
         height: 100%;
         margin-top: -9rem;
+    }
+
+    .new-boutique__control p{
+        margin-left: -23rem;
     }
 }
