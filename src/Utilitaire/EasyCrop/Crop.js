@@ -72,12 +72,14 @@ const Crop = ( { classes, closePopup, imageSrc, onUpdatePhoto, openFile }) => {
             <Button
               onClick={saveCroppedImage}
               variant="contained"
-              color="primary"
+              color="black"
               classes={{ root: classes.cropButton }}
+              className='validate'
             >
               Valider sélection
             </Button>
-            <input type="file" onChange={openFile} accept="image/*"  className='dowload-btn'/>
+            <button onClick={() => document.getElementById('getFile').click()} style={{margin:'1rem'}} className="changePicture-in">CHANGER DE PHOTO</button>
+            <input type="file" onChange={openFile} accept="image/*"  id='getFile'  style={{display:'none'}}/>
           </div>
         </React.Fragment>
       )}

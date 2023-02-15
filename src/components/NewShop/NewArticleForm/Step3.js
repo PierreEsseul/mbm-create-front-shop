@@ -40,11 +40,25 @@ const Step3 = (props) => {
                 </div>
                 <div className='new-boutique__control'>
 
-                    { props.onValuePhoto ? <button onClick={openFile}>Changer Image</button>
-                    : <input type="file" onChange={openFile} accept="image/*"  className='dowload-btn'/>}
+                    { props.onValuePhoto ? (
+                        <button onClick={openFile} className="changePicture">Changer de photo</button>
+                        ) : (
+                        <>
+                            <button onClick={() => document.getElementById('getFile1').click()} className="changePicture">
+                                Télécharger une photo
+                            </button>
+                            <input
+                            type="file"
+                            onChange={openFile}
+                            accept="image/*"
+                            id='getFile1'
+                            style={{display:'none'}}
+                            />
+                        </>
+                    )}
                     
                     {open && (<PopupDimImg closePopup={() => {setOpen(false)}} imageSrc={props.onValuePhoto} onUpdatePhoto={props.onUpdatePhoto} openFile={openFile}/>)}
-                    {props.onValuePhoto && <p>( -- Image bien chargée -- )</p>}
+                    {props.onValuePhoto && <p className='loadedImage'> Image bien chargée :-) </p>}
                 </div>
                 <div className='new-boutique__control'>
                     <label>Prix de l'article :</label>

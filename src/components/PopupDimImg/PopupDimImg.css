@@ -30,6 +30,8 @@
 }
 
 .popup-img-body button{
-    color: black !important;
+    color: white !important;
     background-color: #ffbf23 !important;
+    font-weight: lighter;
+    font-size: 15px;
 }

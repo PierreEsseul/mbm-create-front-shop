@@ -11,3 +11,13 @@
 .main-part{
     display: inline !important;
 }
+
+.changePicture{
+    margin-left: 0.6rem;
+    width: 19rem;
+}
+
+.changePicture-in{
+    width: 205px;
+    border-radius: 4px;
+}
