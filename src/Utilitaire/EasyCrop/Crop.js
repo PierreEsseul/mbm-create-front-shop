@@ -10,6 +10,7 @@ import { styles } from './style'
 import './Crop.css'
 
 
+
 const Crop = ( { classes, closePopup, imageSrc, onUpdatePhoto, openFile }) => {
 
   const [crop, setCrop] = useState({ x: 0, y: 0 })
