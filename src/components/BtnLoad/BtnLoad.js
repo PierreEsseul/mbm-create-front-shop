@@ -113,7 +113,6 @@ const BtnLoad = () => {
       delay: 1000,
       round: 1,
       update: function() {
-        console.log(loadingProgress.current);
         loadingProgress.current.innerHTML = JSON.stringify(progress.value).replace(/^"(.*)"$/, '$1')
       }
     })
@@ -125,7 +124,6 @@ const BtnLoad = () => {
       easing: 'cubicBezier(.5, .05, .3, .9)',
       delay: 1000,
       complete: function() {
-        console.log("appel function completeLoading");
         completeLoading()
       }
     })

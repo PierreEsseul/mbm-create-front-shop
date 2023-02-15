@@ -4,7 +4,6 @@ import './PopupDimImg.css'
 
 function PopupDimImg(props) {
   
-  
   return (
     <div className='popup-img-container'>
         <div className='popup-img-body'>

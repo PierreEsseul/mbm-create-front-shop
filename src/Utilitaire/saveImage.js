@@ -7,6 +7,8 @@ async function saveImage(image) {
         const route = `${process.env.REACT_APP_URL_BACK}/api/form/upload-image`;
     
         const formData = new FormData();
+        console.log("Value file : ", file);
+        console.log("Value file.name : ", file.name);
         formData.append("file", file, file.name); // append the file with name
         console.log("Value formData in savaImages l.19", formData);
         console.log("Value formData in savaImages l.20", file.name);

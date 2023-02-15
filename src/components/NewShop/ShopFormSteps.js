@@ -184,43 +184,30 @@ const ShopFormSteps = (props, title) => {
             setEnteredAmount('');
             
             try {
-                const imageUrl = article.image ? await saveImage(article.image) : null;
-                article.image = imageUrl;
-                setArticles([...articles, article]);
+                let imgUrlToBlob = new Blob();
+
+                fetch(article.image)
+                .then(response => response.blob())
+                .then(async blob => {
+                    imgUrlToBlob = URL.createObjectURL(blob);
+                    console.log("Value imgUrlToBlob in then ", imgUrlToBlob);
+                    console.log(typeof(imgUrlToBlob));
+
+                    // const imgBlob = new Blob([imgUrlToBlob]);
+                    // console.log("Value imgBlob in then ", imgBlob);
+                    // console.log("Type of imgBlob", typeof(imgBlob));
+
+                    const imageUrl = imgUrlToBlob ? await saveImage(imgUrlToBlob) : null;
+                    console.log("Value imageUrl : ", imageUrl);
+
+                    article.image = imageUrl;
+                    setArticles([...articles, article]);
+                });
 
             } catch (err) {
                 console.log('err :>> ', err);
             }
 
-        }
-    };
-
-    const submitHandler = async (event) => {
-        event.preventDefault();
-
-        const shopData = {
-            mail: enteredMail,
-            shopName: enteredShopName,
-            recover: checkRecovers,
-            address: enteredAddress,
-            payment: checkPayments,
-            articles: articles,
-        }
-
-        console.log('Value shopData in ShopFormStep : ', shopData);
-        
-        // Penser a mettre un loader sur le bouton pour cliquer dessus uniquement lors du retour de l'api
-        // loader hidden
-        addShopHandler(shopData).then(data => {
-            console.log('data: ', data);
-
-            // A remplir avec data.urlShopApi (l'url retourné par le back)
-            setUrlShop(null);
-            // loader ok
-        });
-
-        if(currentStep === 4){
-            goToNextStep();
         }
     };
 
@@ -256,6 +243,35 @@ const ShopFormSteps = (props, title) => {
             setEnteredAmount(enteredAmount);
         }
     }
+
+    const submitHandler = async (event) => {
+        event.preventDefault();
+
+        const shopData = {
+            mail: enteredMail,
+            shopName: enteredShopName,
+            recover: checkRecovers,
+            address: enteredAddress,
+            payment: checkPayments,
+            articles: articles,
+        }
+
+        console.log('Value shopData in ShopFormStep : ', shopData);
+        
+        // Penser a mettre un loader sur le bouton pour cliquer dessus uniquement lors du retour de l'api
+        // loader hidden
+        addShopHandler(shopData).then(data => {
+            console.log('data: ', data);
+
+            // A remplir avec data.urlShopApi (l'url retourné par le back)
+            setUrlShop(null);
+            // loader ok
+        });
+
+        if(currentStep === 4){
+            goToNextStep();
+        }
+    };
 
     return (
         <div className='body'> 
