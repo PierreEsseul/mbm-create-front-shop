@@ -6,6 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
+    justify-content: center;
 }
 
 .new-boutique__control {
@@ -134,10 +135,6 @@ h2 {
 
     .new-boutique__control-text {
         margin-top: -5rem;
-    }
-
-    .new-boutique__control input, textarea {
-        margin-left: 1.3rem;
     }
 
     .new-boutique__actions .redirection{

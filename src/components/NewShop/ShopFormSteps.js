@@ -33,6 +33,7 @@ const ShopFormSteps = (props, title) => {
     const [enteredArticleName, setEnteredArticleName] = useState('');
     const [enteredDescription, setEnteredDescription] = useState('');
     const [enteredImage, setEnteredImage] = useState(null);
+    const [updateImageVar, setUpDateImageVar] = useState(null);
     const [enteredAmount, setEnteredAmount] = useState('');
     const [checkRecovers, setCheckRecovers] = useState('');
     const [enteredAddress, setAddress] = useState({
@@ -68,15 +69,34 @@ const ShopFormSteps = (props, title) => {
         setEnteredDescription(event.target.value);
     };
 
-    const fileChangeHandler = (image) => {
-        // console.log("Value event target files[0] : ", {
-        //   file: event.target.files[0],
-        //   type: typeof event.target.files[0],
-        // });
-        // let file = event.target.files[0];
-        setEnteredImage(image);
-        console.log("shopformsteps image:", image)
-    }    
+
+
+    async function fileChangeHandler (e) {
+        let imageDataUrl;
+        
+        if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0]
+            imageDataUrl = await readFile(file) 
+        }
+        
+        if(imageDataUrl){
+            setEnteredImage(imageDataUrl);
+        }
+            
+    }
+
+    function readFile(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.addEventListener('load', () => resolve(reader.result), false)
+          reader.readAsDataURL(file)
+        })
+    }
+
+    function updateImage(newImage){
+        setUpDateImageVar(newImage);
+    }
+  
     
     const amountChangeHandler = (event) => {
         setEnteredAmount(event.target.value);
@@ -118,6 +138,7 @@ const ShopFormSteps = (props, title) => {
             onChangeDescription={descriptionChangeHandler}
             onValuePhoto={enteredImage}
             onChangePhoto={fileChangeHandler}
+            onUpdatePhoto={updateImage}
             onValuePrice={enteredAmount}
             onChangePrice={amountChangeHandler} />,
         <Step4 
@@ -157,13 +178,14 @@ const ShopFormSteps = (props, title) => {
             const article = {
                 articleName: enteredArticleName,
                 description: enteredDescription,
-                image: enteredImage,
+                image: updateImageVar,
                 amount: enteredAmount
             };
 
             setEnteredArticleName('');
             setEnteredDescription('');
             setEnteredImage(null);
+            setUpDateImageVar(null);
             setEnteredAmount('');
             
             try {

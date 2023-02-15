@@ -2,3 +2,12 @@
     background-color: #ffbf23 !important;
     border: none !important;
 }
+
+.btn-change-file{
+    display: flex;
+    justify-content: center;
+}
+
+.main-part{
+    display: inline !important;
+}

@@ -5,13 +5,15 @@ import PopupDimImg from '../../PopupDimImg/PopupDimImg';
 
 const Step3 = (props) => {
     
-
+    
     const [open, setOpen] = useState(false);
 
-
-    function openPopup(){
+    async function openFile(e){
+        await props.onChangePhoto(e); 
         setOpen(true);
     }
+
+
 
     return (
         <div>
@@ -37,8 +39,11 @@ const Step3 = (props) => {
                     ></textarea>
                 </div>
                 <div className='new-boutique__control'>
-                    <button onClick={openPopup} className='dowload-btn'>Télécharger une photo</button>
-                    {open && (<PopupDimImg onChangePhoto={props.onChangePhoto} closePopup={() => {setOpen(false)}}/>)}
+
+                    { props.onValuePhoto ? <button onClick={openFile}>Changer Image</button>
+                    : <input type="file" onChange={openFile} accept="image/*"  className='dowload-btn'/>}
+                    
+                    {open && (<PopupDimImg closePopup={() => {setOpen(false)}} imageSrc={props.onValuePhoto} onUpdatePhoto={props.onUpdatePhoto} openFile={openFile}/>)}
                     {props.onValuePhoto && <p>( -- Image bien chargée -- )</p>}
                 </div>
                 <div className='new-boutique__control'>
