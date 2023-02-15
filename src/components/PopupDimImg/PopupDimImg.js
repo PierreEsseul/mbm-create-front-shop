@@ -15,8 +15,11 @@ function PopupDimImg(props) {
   }
 
   async function saveSelected(){
-    await saveImage(variable);
-    console.log(variable);
+    await variable.toBlob((blob) => {
+      // Gérez ici le Blob, par exemple en l'envoyant au serveur
+      console.log("Value variable: ", blob);
+      saveImage(blob);
+    });
     props.closePopup();
   }
   

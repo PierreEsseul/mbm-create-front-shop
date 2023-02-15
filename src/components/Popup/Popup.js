@@ -3,7 +3,7 @@ import React from "react";
 
 import "./Popup.css";
 
-export const Popup = ({ text, closePopup, next, open}) => {
+export const Popup = ({ text, closePopup, open}) => {
   return (
     open ? 
       <div className="popup-container">
