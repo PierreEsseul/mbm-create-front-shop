@@ -19,10 +19,6 @@ import addShopHandler from '../Back/apiShop.js';
 
 const ShopFormSteps = (props, title) => {
 
-    // Firebase const 
-    // const ref = collection(firestore,"data");
-
-
     useEffect(() => {
         document.title = "MadeByMe | Créer votre boutique"
     }, []);
@@ -48,7 +44,6 @@ const ShopFormSteps = (props, title) => {
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
-    // const [article, setArticle] = useState([]);
     const [urlShop, setUrlShop] = useState(null);
 
     
@@ -211,14 +206,6 @@ const ShopFormSteps = (props, title) => {
             payment: checkPayments,
             articles: articles,
         }
-
-        // Firebase 
-        // try{
-        //     addDoc(ref,shopData);
-        // }catch(e){
-        //     console.log(e);
-        // }
-        
 
         console.log('Value shopData in ShopFormStep : ', shopData);
         
