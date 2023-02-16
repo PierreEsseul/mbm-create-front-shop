@@ -3,7 +3,13 @@ import BtnLoad from '../../BtnLoad/BtnLoad';
 
 import './Steps.css';
 
+
 const ConfirmStep = (props) => {
+    const slugify = props.slug; 
+    const domain = process.env.REACT_APP_DOMAIN_SHOP_ONLINE;
+    
+    const urlShop = `http://${slugify}.${domain}`;
+    console.log("Value of URLShop : ", urlShop);
     
     return (
         <div className='new-boutique__controls'>
@@ -20,7 +26,7 @@ const ConfirmStep = (props) => {
             </div>
 
             <div className='new-boutique__actions'>
-                <BtnLoad />
+                <BtnLoad urlShop={urlShop}/>
             </div>
             <div></div>
         </div>
