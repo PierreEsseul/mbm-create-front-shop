@@ -18,6 +18,13 @@
 }
 
 .changePicture-in{
-    width: 205px;
+    width: 239px;
     border-radius: 4px;
+}
+
+
+@media (min-width: 769px){
+    .changePicture-in{
+        width: 205px;
+    }
 }
