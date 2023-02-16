@@ -1,9 +1,10 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import anime from 'animejs/lib/anime.es.js';
 
 import './BtnLoad.css';
 
-const BtnLoad = () => {
+
+const BtnLoad = (props) => {
   const buttonArea = useRef(null);
   const progressArea = useRef(null);
   const completeArea = useRef(null);
@@ -18,7 +19,7 @@ const BtnLoad = () => {
   let loadingTime = 6000
   let progress = {
     value: '0 %'
-  };
+  };  
   
   useEffect(startLoading, []);
 
@@ -157,12 +158,11 @@ const BtnLoad = () => {
                   </div>
               </div>
               <div className="complete-area" ref={completeArea}>
-                <a href="https://chat.openai.com/chat?__cf_chl_tk=XJKHc3KrCJHdG3nlTHuPJX7PGYBbTven4Anjeg5EYLs-1676303799-0-gaNycGzNF-U">
+                <a href={props.urlShop}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.71 28.57">
                       <path className="tick-1" ref={tick1} fill="none" stroke="#6c6c6c" strokeDasharray="52" strokeDashoffset="52" d="M2,12.42,16.14,26.57,34.71,2" />
                       <path className="tick-2" ref={tick2} fill="none"  stroke="#000" strokeDasharray="52" strokeDashoffset="52" d="M18,12.42,32.14,26.57,50.71,2" />
                   </svg>
-
                   <span ref={doneText}>Voir ma boutique</span>
                 </a>
               </div>

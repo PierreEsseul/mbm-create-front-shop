@@ -1,6 +1,6 @@
 async function addShopHandler(shop) {
     console.log('shop :>> ', shop);
-
+    
     try {
     const response = await fetch(
         `${process.env.REACT_APP_URL_BACK}/api/form`,
@@ -11,8 +11,8 @@ async function addShopHandler(shop) {
             "Content-Type": "application/json",
         },
         }
-    );
-
+    )
+   
     const data = await response.json();
     console.log("data:", data);
 
