@@ -78,7 +78,12 @@ const Crop = ( { classes, closePopup, imageSrc, onUpdatePhoto, openFile }) => {
             >
               Valider sélection
             </Button>
-            <button onClick={() => document.getElementById('getFile').click()} style={{margin:'1rem'}} className="changePicture-in">CHANGER DE PHOTO</button>
+            <Button
+              onClick={() => document.getElementById('getFile').click()}
+              className="changePicture-in"
+            >
+              CHANGER DE PHOTO
+            </Button>
             <input type="file" onChange={openFile} accept="image/*"  id='getFile'  style={{display:'none'}}/>
           </div>
         </React.Fragment>

@@ -18,13 +18,20 @@
 }
 
 .changePicture-in{
-    width: 239px;
-    border-radius: 4px;
+    margin-left: 16px !important;
+    margin-top: 1.5rem !important;
+}
+
+.validate {
+    margin-top: 2rem !important;
 }
 
 
 @media (min-width: 769px){
+    .validate {
+        margin-top: 0 !important;
+    }
     .changePicture-in{
-        width: 205px;
+        margin-top: 0 !important;
     }
 }
