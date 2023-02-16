@@ -42,8 +42,6 @@ export async function getCroppedImg(
     return null;
   }
 
-  const rotRad = getRadianAngle(rotation);
-
   // calculate bounding box of the rotated image
   const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
     image.width,
@@ -62,8 +60,7 @@ export async function getCroppedImg(
   ctx.fillStyle = "#FFFFFF";
   ctx.fillRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
-  // translate and rotate to draw the image correctly
-  ctx.rotate(rotRad);
+  // translate to draw the image correctly
   ctx.scale(flip.horizontal ? -1 : 1, flip.vertical ? -1 : 1);
   ctx.translate(-image.width / 2, -image.height / 2);
 
@@ -73,6 +70,20 @@ export async function getCroppedImg(
 
   // draw the rotated image, centered on the canvas
   ctx.drawImage(image, 0, 0);
+
+  if (canvas.width < 340 || canvas.height < 320) {
+    // create a new blob centered on a 340x320 canvas
+    const newCanvas = document.createElement('canvas');
+    const newCtx = newCanvas.getContext('2d');
+    newCanvas.width = 340;
+    newCanvas.height = 320;
+    newCtx.fillStyle = "#FFFFFF";
+    newCtx.drawImage(canvas, (newCanvas.width - canvas.width) / 2, (newCanvas.height - canvas.height) / 2);
+    canvas.width = newCanvas.width;
+    canvas.height = newCanvas.height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(newCanvas, 0, 0);
+  }
 
   // croppedAreaPixels values are bounding box relative
   // extract the cropped image using these values
