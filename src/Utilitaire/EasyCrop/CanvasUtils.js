@@ -42,8 +42,6 @@ export async function getCroppedImg(
     return null;
   }
 
-  const rotRad = getRadianAngle(rotation);
-
   // calculate bounding box of the rotated image
   const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
     image.width,
@@ -62,8 +60,7 @@ export async function getCroppedImg(
   ctx.fillStyle = "#FFFFFF";
   ctx.fillRect(-canvas.width/2, -canvas.height/2, canvas.width, canvas.height);
 
-  // translate and rotate to draw the image correctly
-  ctx.rotate(rotRad);
+  // translate to draw the image correctly
   ctx.scale(flip.horizontal ? -1 : 1, flip.vertical ? -1 : 1);
   ctx.translate(-image.width / 2, -image.height / 2);
 
@@ -97,7 +94,6 @@ export async function getCroppedImg(
     }, 'image/jpeg');
   });
 }
-
 
 export async function getRotatedImage(imageSrc, rotation = 0) {
   const image = await createImage(imageSrc)
