@@ -48,11 +48,11 @@ const Step3 = (props) => {
                                 Télécharger une photo
                             </button>
                             <input
-                            type="file"
-                            onChange={openFile}
-                            accept="image/*"
-                            id='getFile1'
-                            style={{display:'none'}}
+                                type="file"
+                                onChange={openFile}
+                                accept="image/*"
+                                id='getFile1'
+                                style={{display:'none'}}
                             />
                         </>
                     )}
