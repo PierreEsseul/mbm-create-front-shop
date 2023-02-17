@@ -41,10 +41,10 @@ const Step3 = (props) => {
                 <div className='new-boutique__control'>
 
                     { props.onValuePhoto ? (
-                        <button onClick={openFile} className="changePicture">Changer de photo</button>
+                        <button type='button' onClick={openFile} className="changePicture">Changer de photo</button>
                         ) : (
                         <>
-                            <button onClick={() => document.getElementById('getFile1').click()} className="changePicture">
+                            <button type='button' onClick={() => document.getElementById('getFile1').click()} className="changePicture">
                                 Télécharger une photo
                             </button>
                             <input
@@ -62,13 +62,16 @@ const Step3 = (props) => {
                 </div>
                 <div className='new-boutique__control'>
                     <label>Prix de l'article :</label>
-                    <input type="number"
+                    <input 
+                        type="number"
                         id="price"
                         name="price"
                         min="0.01" 
+                        max="999999.99"
                         step="0.01"  
                         value={props.onValuePrice} 
-                        onChange={props.onChangePrice} />
+                        onChange={props.onChangePrice} 
+                    />
                 </div>
             </div>
         </div>

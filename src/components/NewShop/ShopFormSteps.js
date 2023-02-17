@@ -19,9 +19,22 @@ import addShopHandler from '../Back/apiShop.js';
 
 const ShopFormSteps = (props, title) => {
 
+
+    const [checkPrice, setcheckPrice] = useState(true);
+
     useEffect(() => {
         document.title = "MadeByMe | Créer votre boutique"
     }, []);
+
+
+    useEffect(()=>{
+        if(checkPrice === false){
+            setErrorMessage("Le prix de l'article doit être compris entre 0.01€ et 999 999.99€");
+        }   
+        else{
+            setErrorMessage("");
+        }
+    }, [checkPrice])
 
     const [currentStep, setCurrentStep] = useState(0);
     const [enteredMail, setEnteredMail] = useState('');
@@ -44,10 +57,11 @@ const ShopFormSteps = (props, title) => {
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
-    const [slugShop, setSlugShop] = useState(null);
+    const [slugShop, setSlugShop] = useState(null); 
 
     
 
+    
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
     };
@@ -94,7 +108,14 @@ const ShopFormSteps = (props, title) => {
   
     
     const amountChangeHandler = (event) => {
-        setEnteredAmount(event.target.value);
+        if( ( event.target.value < 0.01 ) ||  event.target.value > 999999.99 ){
+            setcheckPrice(false);
+            setEnteredAmount(null); 
+        }
+        else{
+            setEnteredAmount(event.target.value);
+            setcheckPrice(true);
+        }
     };
 
     const recoverChangeHandler = (event) => {
