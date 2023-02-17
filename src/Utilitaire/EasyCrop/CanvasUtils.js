@@ -109,7 +109,6 @@ export async function getCroppedImg(
   });
 }
 
-
 export async function getRotatedImage(imageSrc, rotation = 0) {
   const image = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
