@@ -31,7 +31,8 @@ const Step3 = (props) => {
                         autoFocus />
                 </div>
                 <div className='new-boutique__control'>
-                    <textarea cols="40" rows="5"
+                    <textarea 
+                        cols="40" rows="5"
                         id="description"
                         placeholder='Ajouter votre description...'
                         value={props.onValueDescription}

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import anime from 'animejs/lib/anime.es.js';
 
 import './BtnLoad.css';

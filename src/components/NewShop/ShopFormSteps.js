@@ -20,21 +20,9 @@ import addShopHandler from '../Back/apiShop.js';
 const ShopFormSteps = (props, title) => {
 
 
-    const [checkPrice, setcheckPrice] = useState(true);
-
     useEffect(() => {
         document.title = "MadeByMe | Créer votre boutique"
     }, []);
-
-
-    useEffect(()=>{
-        if(checkPrice === false){
-            setErrorMessage("Le prix de l'article doit être compris entre 0.01€ et 999 999.99€");
-        }   
-        else{
-            setErrorMessage("");
-        }
-    }, [checkPrice])
 
     const [currentStep, setCurrentStep] = useState(0);
     const [enteredMail, setEnteredMail] = useState('');
@@ -58,9 +46,16 @@ const ShopFormSteps = (props, title) => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [articles, setArticles] = useState([]);
     const [slugShop, setSlugShop] = useState(null); 
+    const [checkPrice, setcheckPrice] = useState(true);
 
-    
-
+    useEffect(()=>{
+        if(checkPrice === false){
+            setErrorMessage("Le prix de l'article doit être compris entre 0.01€ et 999 999.99€");
+        }
+        else{
+            setErrorMessage("");
+        }
+    }, [checkPrice]);
     
     const mailChangeHandler = (event) => {  
         setEnteredMail(event.target.value);
@@ -77,8 +72,6 @@ const ShopFormSteps = (props, title) => {
     const descriptionChangeHandler = (event) => {
         setEnteredDescription(event.target.value);
     };
-
-
 
     async function fileChangeHandler (e) {
         let imageDataUrl;
@@ -122,7 +115,7 @@ const ShopFormSteps = (props, title) => {
         const recover = event.target.value;
         if (event.target.checked) {
             setCheckRecovers([...checkRecovers, recover]);
-        } else {
+        }else {
             setCheckRecovers(checkRecovers.filter((f) => f !== recover));           
         }
     };
@@ -238,10 +231,9 @@ const ShopFormSteps = (props, title) => {
         setErrorMessage(null);
 
         const inputs = [[enteredMail], [enteredShopName], [enteredArticleName, enteredDescription, enteredAmount], [checkRecovers], [checkPayments]];
-        if (currentStep === 2){
-            saveArticleDataHandler();            
-        }
-
+        console.log(inputs);
+        console.log(currentStep);
+    
         if (currentStep === 0){
             const isEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputs[0][0]);
 
@@ -251,7 +243,10 @@ const ShopFormSteps = (props, title) => {
                 setErrorMessage('Vous devez saisir une adresse mail valide');
                 setEnteredMail(enteredMail);
             }
-        }else if (inputs[currentStep].every(input => input.length) || articles.length !== 0){
+        }else if (inputs[currentStep].every(input => input.length)){
+            if (currentStep === 2){
+                saveArticleDataHandler();            
+            }
             setCurrentStep(currentStep + 1);
         }else {
             setErrorMessage('Veuillez renseigner tous les champs');
@@ -260,6 +255,8 @@ const ShopFormSteps = (props, title) => {
             setEnteredImage(enteredImage);
             setEnteredAmount(enteredAmount);
         }
+
+        console.log(currentStep);
     }
 
     const submitHandler = async (event) => {
@@ -273,9 +270,6 @@ const ShopFormSteps = (props, title) => {
             payment: checkPayments,
             articles: articles,
         }
-
-        console.log('Value shopData in ShopFormStep : ', shopData);
-       
 
         addShopHandler(shopData).then(data => {
             console.log('data: ', data);
